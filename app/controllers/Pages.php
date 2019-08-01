@@ -40,7 +40,7 @@ class Pages extends Controller
     public function articles(){
         $posts = $this->postModel->getPosts();
         $data = [
-            'title' => 'tous nos aticles',
+            'title' => 'tous nos articles',
             'posts' => $posts
         ];
         $this->view('pages/articles', $data);

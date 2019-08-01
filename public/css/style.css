@@ -91,6 +91,11 @@ h1 {
       #container header nav li a {
         color: black; }
 
+#articles {
+  width: 1200px;
+  margin: 0 auto;
+  background-color: cornflowerblue; }
+
 form {
   width: 450px;
   background-color: #ececec;

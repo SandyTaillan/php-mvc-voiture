@@ -22,7 +22,10 @@
          * La fonction getPosts permet de récupérer toutes les données  de la BDD pour tous les articles
          */
         public function getPosts(){
-            $this->db->query("SELECT * FROM articles");
+            $this->db->query("SELECT titre1, resume, lien_img, categorie, name, date_creation FROM articles
+                                                          JOIN users
+                                                               ON articles.user_id = users.id
+ORDER BY articles.id DESC;");
             return $this->db->resultSet();
     }
 
