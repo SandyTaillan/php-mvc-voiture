@@ -16,6 +16,7 @@
                 <p>
                     <?= $post->resume; ?>
                 </p>
+                <a href="<? URLROOT; ?>/posts/show/<?= $post->id; ?>" class="btn btn-bleu">More</a>
             <?php endforeach; ?>
         </nav>
     </div>
