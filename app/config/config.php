@@ -11,7 +11,7 @@ define('DB_NAME', 'voiture2');
 // /mnt/f20694f0-5c3b-4de3-95f0-387776ff884b/projets-en-developpement/projets-web/htdocs/php-mvc-voiture/app
 define('APPROOT', dirname(dirname(__FILE__)));
 // URL root
-define('URLROOT', "http://localhost/php-mvc-voiture");
+define('URLROOT', 'http://localhost/php-mvc-voiture');
 // Site name
 define('SITENAME', 'Voiture en folie');
 // App Version

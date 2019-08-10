@@ -1,6 +1,16 @@
 // Couleurs du site
-$couleurbody: #708b79
+$couleurfond: #474643
+$coulIndexArt1: #322648
+$coulIndexArt2: #334263
+$coulIndexArt3: #745739
 $couleurindex_header: #afbdee
+$coulnav: #6a676a
+$couleurfond2: #565552
+$coultexte: #e0e8fe
+$coulbordure: #9b7400
+$coultexteh1: #b2b1bc
+$coultexteart: #ceac55
+
 // Fonction
 @mixin marg0
   margin: 0
@@ -8,38 +18,48 @@ $couleurindex_header: #afbdee
 
 body
   @include marg0
-  background: $couleurbody
+  background: $couleurfond
+  color: $coultexte
 a
   text-decoration: none
+  color: $coultexte
 h1
   text-align: center
+h2
+  color: $coultexte
+p
+  color: $coultexte
 // ******************
 //  Pages d'accueil
 // ******************
 #index-header
-  width: 50vw
+  width: 60%
   display: block
-  background-color: #708b79
+  background-color: $couleurfond
   nav
     width: 600px
-    background-color: antiquewhite
     margin: 40% auto
+    margin-bottom: 0
     img
       display: block
       margin: 0 auto
+      margin-bottom: 70px
     ul
       display: flex
       padding-bottom: 20px
+      margin: 0 auto
     li
       list-style: none
       font-weight: bold
-      margin-left: 30px
-      a
-        color: black
+      margin-left: 10px
+      color: $coultexteh1
+    a
+      color: $coultexteh1
+
 .index-container
   display: flex
 #index-article
-  width: 50%
+  max-width: 50%
   nav
     width: 100%
     ul
@@ -47,31 +67,31 @@ h1
       li
         list-style: none
 .index-bloc-article
-  display: block
+  display: flex
   width: 100%
   height: 300px
+
+
+.bloc
+  float: right
+.bloc1
+  background-color: $coulIndexArt1
+.bloc2
+  background-color: $coulIndexArt2
+.bloc3
+  background-color: $coulIndexArt3
+.index-texte
+  width: 100%
+  padding-left: 20px
   h2
     text-align: center
     margin-top: 40px
-  .img_art_une
-    width: 50%
-    float: left
+
   .article-auteur
-    color: green
+    color: #dad9da
     margin-top: 50px
   .resume
     text-align: center
-.bloc
-  float: right
-
-.bloc1
-  background-color: blueviolet
-
-.bloc2
-  background-color: yellow
-
-.bloc3
-  background-color: cadetblue
 
 // ******************
 //  header général
@@ -83,7 +103,7 @@ h1
       display: flex
       justify-content: space-around
       width: 100%
-      background-color: antiquewhite
+      background-color: $couleurfond2
       margin: 0 auto
       img
         display: block
@@ -94,8 +114,6 @@ h1
         list-style: none
         font-weight: bold
         margin-left: 30px
-        a
-          color: black
 
 // ******************
 //  Pages d'articles
@@ -103,13 +121,68 @@ h1
 #articles
   width: 1200px
   margin: 0 auto
-  background-color: cornflowerblue
+  padding: 20px
+  background-color: $couleurfond2
+  h1
+    color: $coultexte
+  nav
+    margin-top: 80px
+    img
+      border: 2px solid $coulbordure
+    h2
+      text-align: center
+  .articles-bloc-articles
+    display: flex
+    height: 200px
+    margin-bottom: 40px
+
+.art-bloc
+  padding-left: 40px
+.postdata
+    font-size: 0.8em
+.btn
+  padding: 7px
+  border-radius: 5px
+  background-color: #9b7400
+.more
+    float: right
+    color: $coultexteart
+    font-style: italic
+
+// ******************
+//  Pages single
+// ******************
+.single
+  min-height: 775px
+  margin: 20px 60px
+
+  img
+    display: block
+    width: 500px
+    margin: 50px auto
+    border: 3px solid $coulbordure
+.single_texte
+  display: inline-block
+  margin-top: 50px
+.postdata_single
+  display: inline-block
+  padding: 15px
+  background-color: #6a676a
+
 // ********************
 //  Pages de connexion
 // ********************
+#articles
+  .login
+    min-height: 770px
+    h1
+      margin-bottom: 50px
+    p
+      text-align: center
+      margin-bottom: 60px
 form
   width: 450px
-  background-color: #ececec
+  background-color: $couleurfond
   padding: 30px 40px
   margin: 0 auto
   border: 1px solid black
@@ -136,15 +209,95 @@ input[type="submit"]
   width: 100%
   display: block
   box-sizing: border-box
-  background-color: #869960
+  background-color: $coulbordure
   color: #fff
   padding: 10px 0
   border: 1px solid #798a56
   border-radius: 3px
   outline: none
-  margin-bottom: 10px
+  margin: 40px 0
 input[type="submit"]:hover,
 input[type="submit"]:focus
   border: 1px solid #535e3b
   background-color: #798a56
 
+// **************************************
+//             Administration
+// **************************************
+
+// ********************
+//  index.php
+// ********************
+#administration
+  display: flex
+  width: 95%
+  margin: 0 auto
+  min-height: 850px
+.navbar
+
+  margin: auto 0
+  padding-right: 70px
+  li
+    list-style: none
+    font-weight: bold
+  a
+    display: block
+    width: 150px
+    margin-bottom: 20px
+    padding: 20px
+    background-color: $coulbordure
+#admin_articles
+  min-height: 720px
+  margin: 30px auto
+  h1
+    text-align: center
+    margin-bottom: 50px
+  table
+    margin-top: 50px
+    border: 1px solid $coulbordure
+    thead
+      background-color: $coulbordure
+    th
+      padding: 0 20px
+      height: 50px
+    td
+      border-bottom: 1px solid $coulbordure
+      border-right: 1px solid $coulbordure
+      font-size: 0.9em
+.col-pm
+  box-sizing: border-box
+  padding: 0
+  margin: 0 auto
+  text-align: center
+.col-pm-date
+  max-width: 50px
+  padding: 0
+  margin: 0 auto
+  text-align: center
+.col-mm
+  min-width: 150px
+  padding: 0 15px
+.col-gm
+  min-width: 200px
+  padding: 0 15px
+// ********************
+//  footer
+// ********************
+#footer
+  height: 50px
+  padding: 20px
+  background-color: $coulnav
+  text-align: center
+
+
+
+.invalid-feedback
+  color: red
+.is-invalid
+  color: #798a56
+.alert
+  color: #9b7400
+.alert-success
+  color: #798a56
+#msg-flash
+  color: #334263

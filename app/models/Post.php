@@ -19,27 +19,66 @@
 
         /**
          * @return mixed
-         * La fonction getPosts permet de récupérer toutes les données  de la BDD pour tous les articles
+         * La fonction getPosts permet de récupérer toutes les données (sauf le texte complet de l'article  de la BDD
+         *  pour tous les articles
          */
-        public function getPosts(){
-            $this->db->query("SELECT titre1, resume, lien_img, categorie, name, date_creation FROM articles
-                                                          JOIN users
-                                                               ON articles.user_id = users.id
-ORDER BY articles.id DESC;");
+        public function getPosts()
+        {
+            $this->db->query("SELECT articles.id, titre1, resume, lien_img, categorie, name, 
+                                                            DATE_FORMAT(date_creation, '%d/%m/%Y') AS date_crea
+                                                            FROM articles
+                                                            JOIN users
+                                                            ON articles.user_id = users.id
+                                                            ORDER BY articles.id DESC;");
             return $this->db->resultSet();
-    }
+        }
 
         /**
          * @return mixed
          * Cette fonction permet de récupérer le titre, le résumé, le lien de l'image à la une, la catégorie
          *  et le nom de l'auteur de l'article pour les 3 derniers articles écrits dans la BDD
          */
-        public function gettroisarticles(){
+        public function gettroisarticles()
+        {
             $this->db->query('SELECT titre1, resume, lien_img, categorie, name FROM articles
                                     JOIN users
                                         ON articles.user_id = users.id
                                     ORDER BY articles.id DESC
                                     LIMIT 3;');
             return $this->db->resultSet();
+        }
+
+        /**
+         * @param $id
+         * @return mixed
+         * Cette fonction permet de récupérer dans la base de données :
+         *      Le titre de l'article, son image à la une, sa catégorie, le nom de son auteur, la date de création
+         *      et l'article en lui même.
+         */
+        public function getPostById($id)
+        {
+            $this->db->query('SELECT titre1, lien_img, categorie, name, date_creation, article_text
+                                    FROM articles
+                                    JOIN users ON articles.user_id = users.id
+                                    WHERE articles.id = :id');
+            $this->db->bind(':id', $id);
+            $row = $this->db->single();
+            return $row;
+        }
+
+        public function addPost($data)
+        {
+            $this->db->query('INSERT INTO articles(titre1, user_id, article_text) VALUES (:title, :user_id, :body)');
+            // bind values
+            $this->db->bind(':title', $data['title']);
+            $this->db->bind(':user_id', $data['user_id']);
+            $this->db->bind(':body', $data['body']);
+
+            // Execute
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }

@@ -1,6 +1,6 @@
 <!--app/views/inc/footer-->
-        <footer>
+        <div id="footer">
             <p>Site de <?= SITEOWNER; ?>  - ©<?= SITENAME ?> - version : <?= APPVERSION; ?> - Tous droits réservés.</p>
-        </footer>
+        </div>
     </body>
 </html>

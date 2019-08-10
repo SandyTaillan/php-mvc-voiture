@@ -11,11 +11,11 @@ class Pages extends Controller
 {
     /**
      * Pages constructor.
-     * Appel le fichier /models/posts dont le constructeur permet d'instancier la classe Database
+     * Appel le fichier /models/post dont le constructeur permet d'instancier la classe Database
      */
     public function __construct()
     {
-        $this->postModel = $this->model("Post");
+       $this->postModel = $this->model("Post");
     }
 
     /**
@@ -56,5 +56,17 @@ class Pages extends Controller
             'title' => 'Qui est Sandy Taillan ?'
         ];
         $this ->view('pages/about', $data);
+    }
+
+    /**
+     * Création de la page single pour 1 article
+     *
+     */
+    public function single($id){
+        $post = $this->postModel->getPostById($id);
+        $data = [
+                'post' => $post
+        ];
+        $this->view('pages/single', $data);
     }
 }
