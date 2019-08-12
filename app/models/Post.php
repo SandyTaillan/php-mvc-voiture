@@ -54,11 +54,11 @@
          * @return mixed
          * Cette fonction permet de récupérer dans la base de données :
          *      Le titre de l'article, son image à la une, sa catégorie, le nom de son auteur, la date de création
-         *      et l'article en lui même.
+         *      et l'article en lui même ainsi que l'id de l'utilisateur, ce qui est utilise pour le single de post..
          */
         public function getPostById($id)
         {
-            $this->db->query('SELECT titre1, lien_img, categorie, name, date_creation, article_text
+            $this->db->query('SELECT user_id, titre1, lien_img, categorie, name, date_creation, article_text
                                     FROM articles
                                     JOIN users ON articles.user_id = users.id
                                     WHERE articles.id = :id');
