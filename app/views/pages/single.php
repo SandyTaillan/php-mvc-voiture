@@ -1,6 +1,5 @@
 <!--/views/pages/single-->
     <?php
-        require_once APPROOT . '/views/inc/head.php';
         require_once APPROOT . '/views/inc/header.php';
     ?>
 

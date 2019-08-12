@@ -25,7 +25,8 @@
         public function getPosts()
         {
             $this->db->query("SELECT articles.id, titre1, resume, lien_img, categorie, name, 
-                                                            DATE_FORMAT(date_creation, '%d/%m/%Y') AS date_crea
+                                                            DATE_FORMAT(date_creation, '%d/%m/%Y') AS date_crea,
+                                                            DATE_FORMAT(modified_at, '%d/%m/%Y') AS modified_at
                                                             FROM articles
                                                             JOIN users
                                                             ON articles.user_id = users.id
@@ -68,14 +69,39 @@
 
         public function addPost($data)
         {
-            $this->db->query('INSERT INTO articles(titre1, user_id, article_text) VALUES (:title, :user_id, :body)');
+            $this->db->query('INSERT INTO articles(titre1, resume, lien_img, categorie, user_id, article_text) 
+                                    VALUES (:title, :resume, :lien_img, :categorie, :user_id, :body)');
             // bind values
             $this->db->bind(':title', $data['title']);
+            $this->db->bind(':resume', $data['resume']);
+            $this->db->bind(':lien_img', $data['lien_img']);
+            $this->db->bind(':categorie', $data['categorie']);
+            $this->db->bind(':user_id', $data['user_id']);
+            $this->db->bind(':body', $data['body']);
+
+
+            // Execute
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function updatePost($data){
+            $this->db->query('UPDATE articles SET titre1 = :title, resume = :resume, lien_img = :lien_img, 
+                    categorie = :categorie, user_id = :user_id, article_text = :body WHERE id = :id');
+            // Bind values
+            $this->db->bind(':id', $data['id']);
+            $this->db->bind(':title', $data['title']);
+            $this->db->bind(':resume', $data['resume']);
+            $this->db->bind(':lien_img', $data['lien_img']);
+            $this->db->bind(':categorie', $data['categorie']);
             $this->db->bind(':user_id', $data['user_id']);
             $this->db->bind(':body', $data['body']);
 
             // Execute
-            if ($this->db->execute()) {
+            if($this->db->execute()){
                 return true;
             } else {
                 return false;

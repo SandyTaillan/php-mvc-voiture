@@ -261,8 +261,29 @@ input[type="submit"]:focus {
   min-width: 200px;
   padding: 0 15px; }
 
+.admin_add {
+  min-width: 800px; }
+  .admin_add h2 {
+    text-align: center; }
+  .admin_add form {
+    width: 100%; }
+    .admin_add form .cate_form {
+      width: 100%; }
+
+.clearboth {
+  clear: both;
+  display: block; }
+
+.float-left {
+  float: left;
+  width: 45%; }
+
+.dis-right {
+  float: right;
+  width: 45%; }
+
 #footer {
-  height: 50px;
+  height: 60px;
   padding: 20px;
   background-color: #6a676a;
   text-align: center; }

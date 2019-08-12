@@ -6,6 +6,7 @@
 <!--todo : Changer la date de modification d'un article quand on l'update (voir cours SQL sur TIMESTANPS-->
 <!--todo: Faire une table pour les images avec le contenu du alt  -->
 <!--todo : Ajouter une zone de recherche -> apprendre comment faire en php-->
+<!--todo: Rajouter la possibilité de faire une sélection par catégorie et par auteur pour tout public-->
 <?php require_once APPROOT . '/views/inc/head.php'; ?>
 
     <body>

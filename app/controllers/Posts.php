@@ -33,6 +33,9 @@ class Posts extends Controller{
                 'title' => trim($_POST['title']),
                 'body' => trim($_POST['body']),
                 'user_id' => $_SESSION['user_id'],
+                'resume' => trim($_POST['resume']),
+                'lien_img' => trim($_POST['lien_img']),
+                'categorie' => trim($_POST['categorie']),
                 'title_err' => '',
                 'body_err' => ''
             ];
@@ -75,6 +78,9 @@ class Posts extends Controller{
                 'id'        => $id,
                 'title'     => trim($_POST['title']),
                 'body'      => trim($_POST['body']),
+                'resume'    => trim($_POST['resume']),
+                'lien_img'  => trim($_POST['lien_img']),
+                'category'  => trim($_POST['categorie']),
                 'user_id'   => $_SESSION['user_id'],
                 'title_err' => '',
                 'body_err'  => ''
@@ -121,10 +127,10 @@ class Posts extends Controller{
 
     public function show($id){
         $post = $this->postModel->getPostById($id);
-        $user = $this->userModel->findUserById($post->user_id);
+//        $user = $this->userModel->getUserById($post->user_id);
         $data = [
             'post' => $post,
-            'user' => $user
+//            'user' => $user
         ];
         $this->view('posts/show', $data);
     }
