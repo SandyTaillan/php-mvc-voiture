@@ -80,7 +80,7 @@ class Posts extends Controller{
                 'body'      => trim($_POST['body']),
                 'resume'    => trim($_POST['resume']),
                 'lien_img'  => trim($_POST['lien_img']),
-                'category'  => trim($_POST['categorie']),
+                'categorie'  => trim($_POST['categorie']),
                 'user_id'   => $_SESSION['user_id'],
                 'title_err' => '',
                 'body_err'  => ''
@@ -116,14 +116,18 @@ class Posts extends Controller{
                 redirect("posts");
             }
             $data = [
-                'id'    => $id,
-                'title' => $post->title,
-                'body'  => $post->body
+                'id'            => $id,
+                'user_id'       => $post->user_id,
+                'titre1'        => $post->titre1,
+                'resume'        => $post->resume,
+                'lien_img'      => $post->lien_img,
+                'categorie'     => $post->categorie,
+                'article_text'  => $post->article_text
+
             ];
             $this->view('posts/edit', $data);
         }
     }
-
 
     public function show($id){
         $post = $this->postModel->getPostById($id);
@@ -134,6 +138,7 @@ class Posts extends Controller{
         ];
         $this->view('posts/show', $data);
     }
+
     public function delete($id){
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             // Get existing post from model

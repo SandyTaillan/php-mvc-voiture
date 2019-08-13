@@ -58,7 +58,8 @@
          */
         public function getPostById($id)
         {
-            $this->db->query('SELECT user_id, titre1, lien_img, categorie, name, date_creation, article_text
+            $this->db->query('SELECT articles.id, user_id, titre1, resume, lien_img, categorie, name,
+                                        date_creation, article_text
                                     FROM articles
                                     JOIN users ON articles.user_id = users.id
                                     WHERE articles.id = :id');
@@ -90,7 +91,7 @@
 
         public function updatePost($data){
             $this->db->query('UPDATE articles SET titre1 = :title, resume = :resume, lien_img = :lien_img, 
-                    categorie = :categorie, user_id = :user_id, article_text = :body WHERE id = :id');
+                    categorie = :categorie, user_id = :user_id, article_text = :body, modified_at = NOW() WHERE id = :id');
             // Bind values
             $this->db->bind(':id', $data['id']);
             $this->db->bind(':title', $data['title']);

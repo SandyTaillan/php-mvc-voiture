@@ -31,7 +31,6 @@
                     <textarea name="resume" id="resume" rows="5"  class="form-control form-control-lg"></textarea>
                 </div>
                 <input type="submit" class="btn" value="enregistrer">
-                <?= var_dump($data) ?>
                 <p><sup>*</sup> Champs obligatoires</p>
             </form>
         </div>
