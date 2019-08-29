@@ -1,1 +1,1 @@
-<?php
+page des catégories

@@ -8,7 +8,7 @@
             <div class="form-group">
                 <label for="title">Title : <sup>*</sup></label>
                 <input type="text" id="title" name="title" class="form-control form-control-lg
-                        <?= (!empty($data['title_err'])) ? 'is-invalid' : '';?>" value="<?= $data['titre1']; ?>">
+                        <?= (!empty($data['title_err'])) ? 'is-invalid' : '';?>" value="<?= $data['title']; ?>">
                 <span class="invalid-feedback"><?= $data['title_err']; ?></span>
             </div>
             <div class="float-left">
@@ -23,7 +23,7 @@
                 <label for="body">Body : <sup>*</sup></label>
                 <textarea id="body" name="body" class="form-control form-control-lg
                         <?= (!empty($data['body_err'])) ? 'is-invalid' : ''; ?>" rows="10">
-                    <?= $data['article_text'] ; ?>
+                    <?= $data['body'] ; ?>
                 </textarea>
                 <span class="invalid-feedback"><?= $data['body_err']; ?></span>
                 <label for="resume">Résumé de l'article :</label>

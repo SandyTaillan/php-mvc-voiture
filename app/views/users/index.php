@@ -6,9 +6,15 @@ flash('post_message'); ?>
     <?php require APPROOT . '/views/posts/inc/navbar.php'; ?>
     <div id="admin_articles">
         <h1>Administration</h1>
-        <div class="col-md-6">
-            <a href="<?= URLROOT ?>/posts/adduser" class="btn btn-primary pull-right">
+        <div>
+            <a href="<?= URLROOT ?>/users/register" class="btn btn-primary pull-right">
                 <i class="fa fa-pencil">Ajouter un auteur</i>
+            </a>
+            <a href="<?= URLROOT ?>/users/edit_users" class="btn btn-primary pull-right">
+                <i class="fa fa-pencil">Modifier un auteur</i>
+            </a>
+            <a href="<?= URLROOT ?>/users/register" class="btn btn-primary pull-right">
+                <i class="fa fa-pencil">Supprimer un auteur</i>
             </a>
         </div>
         <table>
@@ -22,15 +28,18 @@ flash('post_message'); ?>
             </tr>
             </thead>
             <tbody>
+            <?= var_dump($data['posts'][0]); ?>
             <?php foreach ($data['posts'] as $post) : ?>
                 <tr>
-                    <td class="col-gm"><a href="<?= URLROOT ?>/posts/show/<?= $post->id; ?>"><?= $post->name; ?></a></td>
-                    <td class="col-mm"><?= $post->pseudo; ?></td>
-                    <td class="col-pm"><img src="<?= $post->avatar ?>" alt="" width="150px"></td>
+                    <td class="col-gm"><a href="<?= URLROOT ?>/users/edit/<?= $post->id_aut; ?>"><?= $post->name_aut; ?></a></td>
+                    <td class="col-mm"><?= $post->pseudo_aut; ?></td>
+                    <td class="col-pm"><img src="<?= $post->avatar_aut ?>" alt="" width="150px"></td>
                     <td class="col-gm"><?= $post->email; ?></td>
                     <td class="col-pm-date"><?= $post->date_crea; ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
-
         </table>
+    </div>
+</div>
+<?php require APPROOT . '/views/inc/footer.php'; ?>

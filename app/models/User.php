@@ -9,7 +9,7 @@
         }
         // Register User
         public function register($data){
-            $this->db->query('INSERT INTO users(name, email, password) VALUES (:name, :email, :password)');
+            $this->db->query('INSERT INTO authors(name_aut, email, password) VALUES (:name, :email, :password)');
             // bind values
             $this->db->bind(':name', $data['name']);
             $this->db->bind(':email', $data['email']);
@@ -25,7 +25,7 @@
 
         // Login User
         public function login($email, $password){
-            $this->db->query('SELECT * FROM users WHERE email = :email');
+            $this->db->query('SELECT * FROM authors WHERE email = :email');
             $this->db->bind(':email', $email);
 
             $row = $this->db->single();
@@ -39,7 +39,7 @@
         }
         // find user by email
         public function findUserByEmail($email){
-            $this->db->query('SELECT * FROM users WHERE email = :email');
+            $this->db->query('SELECT * FROM authors WHERE email = :email');
             //bind value
             $this->db->bind(':email', $email);
 
@@ -54,12 +54,27 @@
         }
           // Get User by ID
         public function getUserById($id){
-          $this->db->query('SELECT * FROM users WHERE id = :id');
+          $this->db->query('SELECT * FROM authors WHERE id_aut = :id');
           // Bind value
           $this->db->bind(':id', $id);
-
           $row = $this->db->single();
-
           return $row;
+        }
+
+        public function getUsers()
+        {
+            $this->db->query("SELECT id_aut, name_aut, pseudo_aut, avatar_aut, email, DATE_FORMAT(created_aut, '%d/%m/%Y') 
+                                    AS date_crea FROM authors
+                                    ORDER BY id_aut DESC;");
+            return $this->db->resultSet();
+        }
+        public function editUsers()
+        {
+            $this->db->query("UPDATE authors SET id_aut = :id, name_aut = :name_aut
+                                    WHERE id_aut = :id");
+            // Bind values
+            $this->db->bind(':id', $data['id']);
+            $row = $this->db->single();
+            return $row;
         }
     }

@@ -73,6 +73,7 @@ class Posts extends Controller{
     public function edit($id){
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             // Sanitize POST array
+            echo "j'ai bien un post";
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = [
                 'id'        => $id,
@@ -85,7 +86,7 @@ class Posts extends Controller{
                 'title_err' => '',
                 'body_err'  => ''
             ];
-
+            echo "tout se passe bien";
             // validate data
             if (empty($data['title'])){
                 $data['title_err'] = 'Please enter title';
@@ -97,6 +98,7 @@ class Posts extends Controller{
             // make sure no errors
             if(empty($data['title_err']) && empty($data['body_err'])){
                 //validated
+                echo "update";
                 if($this->postModel->updatePost($data)){
                     flash('post_message', 'Post updated');
                     redirect('posts');
@@ -106,24 +108,27 @@ class Posts extends Controller{
 
             } else {
                 // Load view with errors
+                echo "Il y a une erreur";
                 $this->view('posts/edit', $data);
+
             }
         } else {
             // Get existing post from model
             $post = $this->postModel->getPostById($id);
             // Check for owner
-            if ($post->user_id != $_SESSION['user_id']){
+
+
+            if ($post->id_aut != $_SESSION['user_id']){
                 redirect("posts");
             }
             $data = [
                 'id'            => $id,
-                'user_id'       => $post->user_id,
-                'titre1'        => $post->titre1,
+                'user_id'       => $post->id_aut,
+                'title'         => $post->title,
                 'resume'        => $post->resume,
-                'lien_img'      => $post->lien_img,
-                'categorie'     => $post->categorie,
-                'article_text'  => $post->article_text
-
+                'body'          => $post->text_art,
+                'categorie'     => $post->name_cat,
+                'lien_img'      => $post->lien_img
             ];
             $this->view('posts/edit', $data);
         }
@@ -131,7 +136,7 @@ class Posts extends Controller{
 
     public function show($id){
         $post = $this->postModel->getPostById($id);
-        $user = $this->userModel->getUserById($post->user_id);
+        $user = $this->userModel->getUserById($post->id);
         $data = [
             'post' => $post,
             'user' => $user
@@ -157,4 +162,14 @@ class Posts extends Controller{
             redirect('posts');
         }
     }
+    public function categories(){
+        // Get posts
+        $posts = $this->postModel->getPosts();
+        $data = [
+            'posts' => $posts
+        ];
+        $this->view('posts/categories', $data);
+    }
+
 }
+

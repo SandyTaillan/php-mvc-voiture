@@ -1,12 +1,18 @@
 <!--app/views/pages/index-->
-
-<!-- todo : Créer la page register et le Controllers Users -->
+<!--todo: Améliorer la présentation de http://localhost/php-mvc-voiture/pages/articles (Affichage de tous les articles-->
 <!--todo : finir de créer la page About (écriture l'article) et faire l'appel dans le fichier Pages-->
 <!--todo : mettre du volume sur les 3 blocs sur la page d'accueil avec de l'animation  et un voile de couleur sur les images-->
 <!--todo : Changer la date de modification d'un article quand on l'update (voir cours SQL sur TIMESTANPS-->
 <!--todo: Faire une table pour les images avec le contenu du alt  -->
 <!--todo : Ajouter une zone de recherche -> apprendre comment faire en php-->
 <!--todo: Rajouter la possibilité de faire une sélection par catégorie et par auteur pour tout public-->
+<!--todo: Problème avec la Table catégorie qui prend l'id comme entrée alors qu'elle devrait prendre le nom de la catégorie
+            Cela rend la création d'article impossible : erreur database-->
+<!--todo: Améliorer la page de l'inscription pour créer avatar, pseudo, etc.....-->
+<!--todo: Supprimer la possibilité de s'inscrire hors de l'administration-->
+<!--todo : Créer une page par catégorie-->
+<!--todo : Créer une page par auteur-->
+<!--todo : Après avoir créer des pages par catégories et par auteurs, permettre d'y avoir accès par la page d'accueil-->
 <?php require_once APPROOT . '/views/inc/head.php'; ?>
 
     <body>
@@ -22,9 +28,17 @@
                         <li> - </li>
                         <li><a href="<?= URLROOT  ?>/pages/about">À-propos</a></li>
                         <li> - </li>
-                        <li><a href="<?= URLROOT  ?>/users/login">Se connecter</a></li>
-                        <li> - </li>
-                        <li><a href="<?= URLROOT  ?>/users/register">S'inscrire</a></li>
+                        <!--                        Si une cession est ouverte alors ne pas écrire le code pour le register et le login-->
+                        <!--                juste pouvoir se déconnecter-->
+                        <?php if(isset($_SESSION['user_id'])) : ?>
+                            <li><a href="<?= URLROOT ?>/posts/index">Administration</a></li>
+                            <li> - </li>
+                            <li><a href="<?= URLROOT ?>/users/logout">Se déconnecter</a></li>
+                        <?php else: ?>
+                            <li><a href="<?= URLROOT  ?>/users/login">Se connecter</a></li>
+                            <li> - </li>
+                            <li><a href="<?= URLROOT  ?>/users/register">S'inscrire</a></li>
+                        <?php endif; ?>
                     </ul>
                 </nav>
             </header>
@@ -35,21 +49,23 @@
                         $i = 0;   // pour mettre une couleur différentes à chaque article
                         foreach ($data['posts'] as $post) :
                             $i++; ?>
-
                             <div class="index-bloc-article bloc bloc<?= $i; ?>">
                                 <div class="img_art_une">
-                                    <a href="/">
+                                    <a href="<?= URLROOT ?>/pages/single/<?= $post->id ?>">
                                         <img src="<?= $post->lien_img ; ?>" width='450px' height='300px' alt="">
                                     </a>
                                 </div>
                                 <div class="index-texte">
-                                    <li><p>Catégorie : <?= $post->categorie ; ?></p></li>
+                                    <li><p>Catégorie : <?= $post->name_cat; ?></p></li>
 
-                                    <li><h2><?= $post->titre1 ; ?></h2></li>
-
+                                    <li>
+                                        <a href="<?= URLROOT ?>/pages/single/<?= $post->id ?>">
+                                            <h2><?= $post->title ; ?></h2>
+                                        </a>
+                                    </li>
                                     <li class="resume"><?= $post->resume ; ?></li>
 
-                                    <li class="article-auteur"><i><?= $post->name; ?></i></li>
+                                    <li class="article-auteur"><i>Auteur : <?= $post->name_aut; ?></i></li>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -58,4 +74,3 @@
             </section>
         </main>
         <?php require_once APPROOT . '/views/inc/footer.php'; ?>
-

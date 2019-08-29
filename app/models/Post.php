@@ -24,13 +24,15 @@
          */
         public function getPosts()
         {
-            $this->db->query("SELECT articles.id, titre1, resume, lien_img, categorie, name, 
-                                                            DATE_FORMAT(date_creation, '%d/%m/%Y') AS date_crea,
-                                                            DATE_FORMAT(modified_at, '%d/%m/%Y') AS modified_at
-                                                            FROM articles
-                                                            JOIN users
-                                                            ON articles.user_id = users.id
-                                                            ORDER BY articles.id DESC;");
+            $this->db->query("SELECT id, title, resume, lien_img, name_cat, name_aut,
+                                        DATE_FORMAT(created_at, '%d/%m/%Y') AS date_crea,
+                                        DATE_FORMAT(modified_at, '%d/%m/%Y') AS modified_at
+                                    FROM articles
+                                    JOIN categories
+                                        ON articles.id_cate = categories.id_cat
+                                    JOIN authors
+                                        ON articles.id_authors = authors.id_aut
+                                    ORDER BY articles.id DESC ;");
             return $this->db->resultSet();
         }
 
@@ -41,9 +43,12 @@
          */
         public function gettroisarticles()
         {
-            $this->db->query('SELECT titre1, resume, lien_img, categorie, name FROM articles
-                                    JOIN users
-                                        ON articles.user_id = users.id
+            $this->db->query('SELECT id, title, resume, lien_img, name_cat, name_aut
+                                    FROM articles
+                                    JOIN categories
+                                        ON articles.id_cate = categories.id_cat
+                                    JOIN authors
+                                        ON articles.id_authors = authors.id_aut
                                     ORDER BY articles.id DESC
                                     LIMIT 3;');
             return $this->db->resultSet();
@@ -58,11 +63,20 @@
          */
         public function getPostById($id)
         {
-            $this->db->query('SELECT articles.id, user_id, titre1, resume, lien_img, categorie, name,
-                                        date_creation, article_text
+//            $this->db->query('SELECT articles.id, user_id, titre1, resume, lien_img, categorie, name,
+//                                        date_creation, article_text
+//                                    FROM articles
+//                                    JOIN users ON articles.user_id = users.id
+//                                    WHERE articles.id = :id');
+
+            $this->db->query('SELECT id, id_aut, title, resume, lien_img, name_cat, name_aut, created_at, text_art
                                     FROM articles
-                                    JOIN users ON articles.user_id = users.id
-                                    WHERE articles.id = :id');
+                                    JOIN authors
+                                        ON articles.id_authors = authors.id_aut
+                                    JOIN categories
+                                        ON articles.id_cate = categories.id_cat
+                                    WHERE id = :id');
+
             $this->db->bind(':id', $id);
             $row = $this->db->single();
             return $row;
@@ -70,8 +84,12 @@
 
         public function addPost($data)
         {
-            $this->db->query('INSERT INTO articles(titre1, resume, lien_img, categorie, user_id, article_text) 
-                                    VALUES (:title, :resume, :lien_img, :categorie, :user_id, :body)');
+            echo var_dump($data);
+//            $this->db->query('INSERT INTO articles(titre1, resume, lien_img, categorie, user_id, article_text)
+//                                    VALUES (:title, :resume, :lien_img, :categorie, :user_id, :body)');
+            $this->db->query('INSERT INTO articles(title, resume, text_art, lien_img, id_authors, id_cate)
+                                    VALUES (:title, :resume, :body, :lien_img, :user_id, :categorie)');
+
             // bind values
             $this->db->bind(':title', $data['title']);
             $this->db->bind(':resume', $data['resume']);
@@ -90,16 +108,16 @@
         }
 
         public function updatePost($data){
-            $this->db->query('UPDATE articles SET titre1 = :title, resume = :resume, lien_img = :lien_img, 
-                    categorie = :categorie, user_id = :user_id, article_text = :body, modified_at = NOW() WHERE id = :id');
+            $this->db->query('UPDATE articles SET title = :title, resume = :resume,id_authors = :user_id, 
+                    text_art = :body,  modified_at = NOW() WHERE id = :id');
             // Bind values
             $this->db->bind(':id', $data['id']);
             $this->db->bind(':title', $data['title']);
             $this->db->bind(':resume', $data['resume']);
-            $this->db->bind(':lien_img', $data['lien_img']);
-            $this->db->bind(':categorie', $data['categorie']);
             $this->db->bind(':user_id', $data['user_id']);
             $this->db->bind(':body', $data['body']);
+//            $this->db->bind(':lien_img', $data['lien_img']);
+//            $this->db->bind(':categorie', $data['categorie']);
 
             // Execute
             if($this->db->execute()){
@@ -108,4 +126,5 @@
                 return false;
             }
         }
+
     }

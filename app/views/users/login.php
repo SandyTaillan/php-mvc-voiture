@@ -9,14 +9,16 @@
             <form action="<?=  URLROOT ?>/users/login" method="post">
                 <div class="form-group">
                     <label for="email">Email : <sup>*</sup></label>
-                    <input type="email" id="email" name="email" class="is-invalid
-                            <?= (!empty($data['email_err'])) ? 'is-invalid' : '';?>" value="<?= $data['email']; ?>">
+                    <input type="email" id="email" name="email"
+                           class="is-invalid <?= (!empty($data['email_err'])) ? 'is-invalid' : '';?>"
+                           value="<?= $data['email']; ?>">
                     <span class="invalid-feedback"><?= $data['email_err']; ?></span>
                 </div>
                 <div>
                     <label for="password">Password : <sup>*</sup></label>
-                    <input type="password" id="password" name="password" class="is-invalid
-                            <?= (!empty($data['password_err'])) ? 'is-invalid' : '';?>" value="<?= $data['password']; ?>">
+                    <input type="password" id="password" name="password"
+                           class="is-invalid <?= (!empty($data['password_err'])) ? 'is-invalid' : '';?>"
+                           value="<?= $data['password']; ?>">
                     <span class="invalid-feedback"><?= $data['password_err']; ?></span>
                 </div>
                 <div>

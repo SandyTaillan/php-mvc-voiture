@@ -26,13 +26,13 @@
                 <tbody>
                 <?php foreach ($data['posts'] as $post) : ?>
                     <tr>
-                        <td class="col-gm"><a href="<?= URLROOT ?>/posts/show/<?= $post->id; ?>"><?= $post->titre1; ?></a></td>
-                        <td class="col-mm"><?= $post->categorie; ?></td>
+                        <td class="col-gm"><a href="<?= URLROOT ?>/posts/show/<?= $post->id; ?>"><?= $post->title; ?></a></td>
+                        <td class="col-mm"><?= $post->name_cat; ?></td>
                         <td class="col-pm"><img src="<?= $post->lien_img; ?>" alt="" width="150px"></td>
                         <td class="col-gm"><?= $post->resume; ?></td>
                         <td class="col-pm-date"><?= $post->date_crea; ?></td>
                         <td class="col-pm-date"><?= $post->modified_at; ?></td>
-                        <td class="col-mm"><?= $post->name; ?></td>
+                        <td class="col-mm"><?= $post->name_aut; ?></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
