@@ -33,9 +33,11 @@ class Users extends Controller
             // Init data
             $data = [
                 'name' => trim($_POST['name']),
+                'pseudo' => trim($_POST['pseudo']),
                 'email' => trim($_POST['email']),
                 'password' => trim($_POST['password']),
                 'confirm_password' => trim($_POST['confirm_password']),
+                'avatar' => trim($_POST['avatar']),
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
@@ -97,7 +99,9 @@ class Users extends Controller
             // Init data
             $data = [
                 'name' => '',
+                'pseudo' => '',
                 'email' => '',
+                'avatar' => '',
                 'password' => '',
                 'confirm_password' => '',
                 'name_err' => '',

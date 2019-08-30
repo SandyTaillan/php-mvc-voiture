@@ -1,5 +1,4 @@
 <!--app/views/pages/index-->
-<!--todo: Améliorer la présentation de http://localhost/php-mvc-voiture/pages/articles (Affichage de tous les articles-->
 <!--todo : finir de créer la page About (écriture l'article) et faire l'appel dans le fichier Pages-->
 <!--todo : mettre du volume sur les 3 blocs sur la page d'accueil avec de l'animation  et un voile de couleur sur les images-->
 <!--todo : Changer la date de modification d'un article quand on l'update (voir cours SQL sur TIMESTANPS-->
@@ -13,6 +12,11 @@
 <!--todo : Créer une page par catégorie-->
 <!--todo : Créer une page par auteur-->
 <!--todo : Après avoir créer des pages par catégories et par auteurs, permettre d'y avoir accès par la page d'accueil-->
+<!--todo: Faire en sorte que s'il n'y a pas de resume, alors prendre les 150 premières lettres dans la BDD-->
+<!--todo: faire en que dans la page article, il y ait une image à gauche puis à droite etc...-->
+<!--todo : tout le site doit être web responsive-->
+<!--todo : faire la mise en place des commentaires-->
+
 <?php require_once APPROOT . '/views/inc/head.php'; ?>
 
     <body>
@@ -36,8 +40,8 @@
                             <li><a href="<?= URLROOT ?>/users/logout">Se déconnecter</a></li>
                         <?php else: ?>
                             <li><a href="<?= URLROOT  ?>/users/login">Se connecter</a></li>
-                            <li> - </li>
-                            <li><a href="<?= URLROOT  ?>/users/register">S'inscrire</a></li>
+<!--                            <li> - </li>-->
+<!--                            <li><a href="--><?//= URLROOT  ?><!--/users/register">S'inscrire</a></li>-->
                         <?php endif; ?>
                     </ul>
                 </nav>

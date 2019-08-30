@@ -31,8 +31,8 @@ p {
       margin-bottom: 70px; }
     #index-header nav ul {
       display: flex;
-      padding-bottom: 20px;
-      margin: 0 auto; }
+      justify-content: center;
+      padding-bottom: 20px; }
     #index-header nav li {
       list-style: none;
       font-weight: bold;
@@ -57,7 +57,7 @@ p {
 .index-bloc-article {
   display: flex;
   width: 100%;
-  height: 310px; }
+  height: 300px; }
 
 .bloc {
   float: right; }
@@ -73,13 +73,14 @@ p {
 
 .index-texte {
   width: 100%;
-  padding-left: 20px; }
+  padding-left: 20px;
+  padding-top: 20px; }
   .index-texte h2 {
     text-align: center;
     margin-top: 40px; }
   .index-texte .article-auteur {
     color: #dad9da;
-    margin-top: 50px; }
+    margin-top: 70px; }
   .index-texte .resume {
     text-align: center; }
 
@@ -136,7 +137,8 @@ p {
 .more {
   float: right;
   color: #ceac55;
-  font-style: italic; }
+  font-style: italic;
+  margin-top: 20px; }
 
 .single {
   min-height: 775px;

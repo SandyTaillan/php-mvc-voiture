@@ -9,11 +9,16 @@
         }
         // Register User
         public function register($data){
-            $this->db->query('INSERT INTO authors(name_aut, email, password) VALUES (:name, :email, :password)');
+            $this->db->query('INSERT INTO authors(name_aut, pseudo_aut, email, password, avatar_aut) 
+                                    VALUES (:name, :pseudo, :email, :password, :avatar)');
             // bind values
             $this->db->bind(':name', $data['name']);
+            $this->db->bind(':pseudo', $data['pseudo']);
             $this->db->bind(':email', $data['email']);
             $this->db->bind(':password', $data['password']);
+            $this->db->bind(':avatar', $data['avatar']);
+
+
 
             // Execute
             if($this->db->execute()){
