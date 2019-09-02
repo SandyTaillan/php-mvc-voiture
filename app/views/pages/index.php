@@ -16,9 +16,9 @@
 <!--todo: faire en que dans la page article, il y ait une image à gauche puis à droite etc...-->
 <!--todo : tout le site doit être web responsive-->
 <!--todo : faire la mise en place des commentaires-->
-
+<!--todo : Diminuer la taille de l'image à la une pour le single d'article-->
+<!--todo : Mettre l'avatar de l'auteur dans le postmetadata du single d'article-->
 <?php require_once APPROOT . '/views/inc/head.php'; ?>
-
     <body>
         <main class="index-container">
             <header id="index-header">

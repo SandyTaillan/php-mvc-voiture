@@ -28,12 +28,11 @@ flash('post_message'); ?>
             </tr>
             </thead>
             <tbody>
-            <?= var_dump($data['posts'][0]); ?>
             <?php foreach ($data['posts'] as $post) : ?>
                 <tr>
                     <td class="col-gm"><a href="<?= URLROOT ?>/users/edit/<?= $post->id_aut; ?>"><?= $post->name_aut; ?></a></td>
                     <td class="col-mm"><?= $post->pseudo_aut; ?></td>
-                    <td class="col-pm"><img src="<?= $post->avatar_aut ?>" alt="" width="150px"></td>
+                    <td class="col-pm"><img src="<?= URLROOT ?>/public/img/avatar/<?= $post->avatar_aut ?>" alt="" width="150px"></td>
                     <td class="col-gm"><?= $post->email; ?></td>
                     <td class="col-pm-date"><?= $post->date_crea; ?></td>
                 </tr>

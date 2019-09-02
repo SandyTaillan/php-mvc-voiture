@@ -25,14 +25,14 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Pour changer votre mot de passe : </label>
-                    <input type="text" id="password" name="password" class="form-control form-control-lg"
+                    <input type="text" id="password" name="password"
                            class="is-invalid <?= (!empty($data['password_err'])) ? 'is-invalid' : '';?>"
                            value="">
                     <span class="invalid-feedback"><?= $data['password_err']; ?></span>
 
                 </div>
                 <div class="form-group">
-                    <label for="avatar">Veuillez indiquer le lien vers votre avatar: </label>
+                    <label for="avatar">Veuillez indiquer le nom du fichier de votre avatar (avec extension)</label>
                     <input type="text" id="avatar" name="avatar" class="form-control form-control-lg"
                            value="<?= $data['avatar'] ?>">
                 </div>
