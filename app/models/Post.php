@@ -24,12 +24,10 @@
          */
         public function getPosts()
         {
-            $this->db->query("SELECT id, title, resume, lien_img, name_cat, name_aut,
+            $this->db->query("SELECT id, title, resume, lien_img, name_cate, name_aut,
                                         DATE_FORMAT(created_at, '%d/%m/%Y') AS date_crea,
                                         DATE_FORMAT(modified_at, '%d/%m/%Y') AS modified_at
                                     FROM articles
-                                    JOIN categories
-                                        ON articles.id_cate = categories.id_cat
                                     JOIN authors
                                         ON articles.id_authors = authors.id_aut
                                     ORDER BY articles.id DESC ;");
@@ -43,10 +41,8 @@
          */
         public function gettroisarticles()
         {
-            $this->db->query('SELECT id, title, resume, lien_img, name_cat, name_aut
+            $this->db->query('SELECT id, title, resume, lien_img, name_cate, name_aut
                                     FROM articles
-                                    JOIN categories
-                                        ON articles.id_cate = categories.id_cat
                                     JOIN authors
                                         ON articles.id_authors = authors.id_aut
                                     ORDER BY articles.id DESC
@@ -69,12 +65,10 @@
 //                                    JOIN users ON articles.user_id = users.id
 //                                    WHERE articles.id = :id');
 
-            $this->db->query('SELECT id, id_aut, title, resume, lien_img, name_cat, name_aut, created_at, text_art
+            $this->db->query('SELECT id, id_aut, title, resume, lien_img, name_cate, name_aut, created_at, text_art
                                     FROM articles
                                     JOIN authors
                                         ON articles.id_authors = authors.id_aut
-                                    JOIN categories
-                                        ON articles.id_cate = categories.id_cat
                                     WHERE id = :id');
 
             $this->db->bind(':id', $id);
@@ -87,7 +81,7 @@
             echo var_dump($data);
 //            $this->db->query('INSERT INTO articles(titre1, resume, lien_img, categorie, user_id, article_text)
 //                                    VALUES (:title, :resume, :lien_img, :categorie, :user_id, :body)');
-            $this->db->query('INSERT INTO articles(title, resume, text_art, lien_img, id_authors, id_cate)
+            $this->db->query('INSERT INTO articles(title, resume, text_art, lien_img, id_authors, name_cate)
                                     VALUES (:title, :resume, :body, :lien_img, :user_id, :categorie)');
 
             // bind values
@@ -108,7 +102,7 @@
         }
 
         public function updatePost($data){
-            $this->db->query('UPDATE articles SET title = :title, resume = :resume,id_authors = :user_id, 
+            $this->db->query('UPDATE articles SET title = :title, name_cate = :categorie, resume = :resume,id_authors = :user_id, 
                     text_art = :body,  modified_at = NOW() WHERE id = :id');
             // Bind values
             $this->db->bind(':id', $data['id']);
@@ -117,7 +111,7 @@
             $this->db->bind(':user_id', $data['user_id']);
             $this->db->bind(':body', $data['body']);
 //            $this->db->bind(':lien_img', $data['lien_img']);
-//            $this->db->bind(':categorie', $data['categorie']);
+            $this->db->bind(':categorie', $data['categorie']);
 
             // Execute
             if($this->db->execute()){

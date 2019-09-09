@@ -127,7 +127,7 @@ class Posts extends Controller{
                 'title'         => $post->title,
                 'resume'        => $post->resume,
                 'body'          => $post->text_art,
-                'categorie'     => $post->name_cat,
+                'categorie'     => $post->name_cate,
                 'lien_img'      => $post->lien_img
             ];
             $this->view('posts/edit', $data);

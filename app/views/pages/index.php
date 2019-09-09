@@ -1,14 +1,13 @@
 <!--app/views/pages/index-->
+<!--fixme: Problème avec la Table catégorie qui prend l'id comme entrée alors qu'elle devrait prendre le nom de la catégorie
+            Cela rend la création d'article impossible : erreur database
+            Je dois donc dans ce cas créer un appel à l'ensemble des catégories-->
 <!--todo : finir de créer la page About (écriture l'article) et faire l'appel dans le fichier Pages-->
 <!--todo : mettre du volume sur les 3 blocs sur la page d'accueil avec de l'animation  et un voile de couleur sur les images-->
-<!--todo : Changer la date de modification d'un article quand on l'update (voir cours SQL sur TIMESTANPS-->
+<!--todo : Changer la date de modification d'un article quand on l'update (voir cours SQL sur TIMESTAMPS-->
 <!--todo: Faire une table pour les images avec le contenu du alt  -->
 <!--todo : Ajouter une zone de recherche -> apprendre comment faire en php-->
 <!--todo: Rajouter la possibilité de faire une sélection par catégorie et par auteur pour tout public-->
-<!--todo: Problème avec la Table catégorie qui prend l'id comme entrée alors qu'elle devrait prendre le nom de la catégorie
-            Cela rend la création d'article impossible : erreur database-->
-<!--todo: Améliorer la page de l'inscription pour créer avatar, pseudo, etc.....-->
-<!--todo: Supprimer la possibilité de s'inscrire hors de l'administration-->
 <!--todo : Créer une page par catégorie-->
 <!--todo : Créer une page par auteur-->
 <!--todo : Après avoir créer des pages par catégories et par auteurs, permettre d'y avoir accès par la page d'accueil-->
@@ -18,6 +17,7 @@
 <!--todo : faire la mise en place des commentaires-->
 <!--todo : Diminuer la taille de l'image à la une pour le single d'article-->
 <!--todo : Mettre l'avatar de l'auteur dans le postmetadata du single d'article-->
+<!--todo : Faire une page 404-->
 <?php require_once APPROOT . '/views/inc/head.php'; ?>
     <body>
         <main class="index-container">
@@ -32,7 +32,7 @@
                         <li> - </li>
                         <li><a href="<?= URLROOT  ?>/pages/about">À-propos</a></li>
                         <li> - </li>
-                        <!--                        Si une cession est ouverte alors ne pas écrire le code pour le register et le login-->
+                        <!--   Si une cession est ouverte alors ne pas écrire le code pour le register et le login-->
                         <!--                juste pouvoir se déconnecter-->
                         <?php if(isset($_SESSION['user_id'])) : ?>
                             <li><a href="<?= URLROOT ?>/posts/index">Administration</a></li>
@@ -60,7 +60,7 @@
                                     </a>
                                 </div>
                                 <div class="index-texte">
-                                    <li><p>Catégorie : <?= $post->name_cat; ?></p></li>
+                                    <li><p>Catégorie : <?= $post->name_cate; ?></p></li>
 
                                     <li>
                                         <a href="<?= URLROOT ?>/pages/single/<?= $post->id ?>">
