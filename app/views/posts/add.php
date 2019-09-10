@@ -14,7 +14,12 @@
                     <span class="invalid-feedback"><?= $data['title_err']; ?></span>
                     <div class="float-left">
                         <label for="categorie">Catégorie : </label>
-                        <input class="cate_form" type="text" id="categorie" name="categorie">
+<!--                        <input class="cate_form" type="text" id="categorie" name="categorie">-->
+                        <select name="categorie" id="categorie">
+                            <?php foreach ($data['posts'] as $post) : ?>
+                            <option value="<?= $post->name_cat; ?>"><?= $post->name_cat; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="dis-right">
                         <label for="lien_img">Image à la une :</label>

@@ -13,7 +13,13 @@
             </div>
             <div class="float-left">
                 <label for="categorie">Catégorie : </label>
-                <input class="cate_form" type="text" id="categorie" name="categorie" value="<?= $data['categorie'] ;?>">
+<!--                <input class="cate_form" type="text" id="categorie" name="categorie" value="--><?//= $data['categorie'] ;?><!--">-->
+                <select name="categorie" id="categorie">
+                    <option value="" selected><?= $data['categorie'] ; ?></option>
+                    <?php foreach ($data['posts_cat'] as $post_cat) : ?>
+                        <option value="<?= $post_cat->name_cat; ?>"><?= $post_cat->name_cat; ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
             <div class="dis-right">
                 <label for="lien_img">Image à la une :</label>

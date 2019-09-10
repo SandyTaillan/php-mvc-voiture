@@ -121,4 +121,11 @@
             }
         }
 
+        public function getCategories()
+        {
+            $this->db->query("SELECT name_cat FROM categories");
+            return $this->db->resultSet();
+        }
+
+
     }

@@ -63,9 +63,11 @@ class Posts extends Controller{
                 $this->view('posts/add', $data);
             }
         } else {
+            $posts = $this->postModel->getCategories();
             $data = [
                 'title' => '',
-                'body' => ''
+                'body' => '',
+                'posts' => $posts
             ];
             $this->view('posts/add', $data);
         }
@@ -115,6 +117,7 @@ class Posts extends Controller{
         } else {
             // Get existing post from model
             $post = $this->postModel->getPostById($id);
+            $posts_cat = $this->postModel->getCategories();
             // Check for owner
 
 
@@ -128,7 +131,8 @@ class Posts extends Controller{
                 'resume'        => $post->resume,
                 'body'          => $post->text_art,
                 'categorie'     => $post->name_cate,
-                'lien_img'      => $post->lien_img
+                'lien_img'      => $post->lien_img,
+                'posts_cat'     => $posts_cat
             ];
             $this->view('posts/edit', $data);
         }

@@ -1,7 +1,4 @@
 <!--app/views/pages/index-->
-<!--fixme: Problème avec la Table catégorie qui prend l'id comme entrée alors qu'elle devrait prendre le nom de la catégorie
-            Cela rend la création d'article impossible : erreur database
-            Je dois donc dans ce cas créer un appel à l'ensemble des catégories-->
 <!--todo : finir de créer la page About (écriture l'article) et faire l'appel dans le fichier Pages-->
 <!--todo : mettre du volume sur les 3 blocs sur la page d'accueil avec de l'animation  et un voile de couleur sur les images-->
 <!--todo : Changer la date de modification d'un article quand on l'update (voir cours SQL sur TIMESTAMPS-->
@@ -18,6 +15,7 @@
 <!--todo : Diminuer la taille de l'image à la une pour le single d'article-->
 <!--todo : Mettre l'avatar de l'auteur dans le postmetadata du single d'article-->
 <!--todo : Faire une page 404-->
+<!--todo:  La date ne s'affiche pas comme je le veux dans le post->show, enfin, je ne suis pas encore fixée ^^-->
 <?php require_once APPROOT . '/views/inc/head.php'; ?>
     <body>
         <main class="index-container">
