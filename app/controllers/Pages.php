@@ -52,8 +52,10 @@ class Pages extends Controller
      *
      */
     public function about(){
+        $post = $this->postModel->getPostByTitle("about");
         $data = [
-            'title' => 'Qui est Sandy Taillan ?'
+            'title' => "À  propos de ce site ...",
+            'post'  => $post
         ];
         $this ->view('pages/about', $data);
     }

@@ -21,7 +21,7 @@
                 dans la catégorie "<?= $data['post']->name_cate ;?>"
             </p>
             <p class="single_texte">
-                <?= $data['post']->text_art; ?>
+                <?= html_entity_decode($data['post']->text_art); ?>
             </p>
         </div>
 

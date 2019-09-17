@@ -13,10 +13,10 @@
                         <h2><?= $post->title ; ?></h2>
                         <p class="postdata">
                             Article de <?= $post->name_aut ; ?> créé le <?= $post->date_crea; ?>
-                            dans la catégorie "<?= $post->name_cat ;?>"
+                            dans la catégorie "<?= $post->name_cate ;?>"
                         </p>
                         <p>
-                            <?= $post->resume; ?>
+                            <?= html_entity_decode($post->resume); ?>
                         </p>
                         <a href="<?= URLROOT ?>/pages/single/<?= $post->id; ?>" class="more">Lire la suite ...</a>
                     </div>

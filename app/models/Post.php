@@ -76,9 +76,21 @@
             return $row;
         }
 
+        public function getPostByTitle($title_art)
+        {
+            $this ->db->query('SELECT id_aut, lien_img, name_aut, text_art 
+                                        FROM articles
+                                        JOIN authors
+                                            ON articles.id_authors = authors.id_aut   
+                                        WHERE title = :title_art');
+
+            $this->db->bind(':title_art', $title_art);
+            $row = $this->db->single();
+            return $row;
+        }
+
         public function addPost($data)
         {
-            echo var_dump($data);
 //            $this->db->query('INSERT INTO articles(titre1, resume, lien_img, categorie, user_id, article_text)
 //                                    VALUES (:title, :resume, :lien_img, :categorie, :user_id, :body)');
             $this->db->query('INSERT INTO articles(title, resume, text_art, lien_img, id_authors, name_cate)
@@ -102,15 +114,15 @@
         }
 
         public function updatePost($data){
-            $this->db->query('UPDATE articles SET title = :title, name_cate = :categorie, resume = :resume,id_authors = :user_id, 
-                    text_art = :body,  modified_at = NOW() WHERE id = :id');
+            $this->db->query('UPDATE articles SET title = :title, name_cate = :categorie, resume = :resume,
+                    id_authors = :user_id, text_art = :body, lien_img = :lien_img, modified_at = NOW() WHERE id = :id');
             // Bind values
             $this->db->bind(':id', $data['id']);
             $this->db->bind(':title', $data['title']);
             $this->db->bind(':resume', $data['resume']);
             $this->db->bind(':user_id', $data['user_id']);
             $this->db->bind(':body', $data['body']);
-//            $this->db->bind(':lien_img', $data['lien_img']);
+            $this->db->bind(':lien_img', $data['lien_img']);
             $this->db->bind(':categorie', $data['categorie']);
 
             // Execute

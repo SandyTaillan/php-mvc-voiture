@@ -9,10 +9,10 @@
             <img src="<?= $data['post']->lien_img; ?>" width="500px" alt="">
             <p class="postdata postdata_single">
                 Article de <?= $data['post']->name_aut ; ?> créé le <?= $data['post']->created_at; ?>
-                dans la catégorie "<?= $data['post']->name_cat ;?>"
+                dans la catégorie "<?= $data['post']->name_cate ;?>"
             </p>
             <p class="single_texte">
-                <?= $data['post']->text_art; ?>
+                <?= html_entity_decode($data['post']->text_art); ?>
             </p>
         </div>
     </div>

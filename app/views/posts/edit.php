@@ -15,7 +15,7 @@
                 <label for="categorie">Catégorie : </label>
 <!--                <input class="cate_form" type="text" id="categorie" name="categorie" value="--><?//= $data['categorie'] ;?><!--">-->
                 <select name="categorie" id="categorie">
-                    <option value="" selected><?= $data['categorie'] ; ?></option>
+                    <option value="<?= $data['categorie']; ?>" selected><?= $data['categorie'] ; ?></option>
                     <?php foreach ($data['posts_cat'] as $post_cat) : ?>
                         <option value="<?= $post_cat->name_cat; ?>"><?= $post_cat->name_cat; ?></option>
                     <?php endforeach; ?>
@@ -29,7 +29,7 @@
                 <label for="body">Body : <sup>*</sup></label>
                 <textarea id="body" name="body" class="form-control form-control-lg
                         <?= (!empty($data['body_err'])) ? 'is-invalid' : ''; ?>" rows="10">
-                    <?= $data['body'] ; ?>
+                    <?= html_entity_decode($data['body']) ; ?>
                 </textarea>
                 <span class="invalid-feedback"><?= $data['body_err']; ?></span>
                 <label for="resume">Résumé de l'article :</label>
