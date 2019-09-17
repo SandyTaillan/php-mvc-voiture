@@ -64,8 +64,9 @@ class Pages extends Controller
      * Création de la page single pour 1 article
      *
      */
-    public function single($id){
-        $post = $this->postModel->getPostById($id);
+    public function single($slug){
+//        $post = $this->postModel->getPostById($id);
+        $post = $this->postModel->getPostBySlug($slug);
         $data = [
                 'post' => $post
         ];

@@ -20,7 +20,8 @@ p {
 #index-header {
   width: 60%;
   display: block;
-  background-color: #474643; }
+  background-color: #474643;
+  border-right: 2px solid #9b7400; }
   #index-header nav {
     width: 600px;
     margin: 40% auto;

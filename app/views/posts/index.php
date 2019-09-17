@@ -26,7 +26,7 @@
                 <tbody>
                 <?php foreach ($data['posts'] as $post) : ?>
                     <tr>
-                        <td class="col-gm"><a href="<?= URLROOT ?>/posts/show/<?= $post->id; ?>"><?= $post->title; ?></a></td>
+                        <td class="col-gm"><a href="<?= URLROOT ?>/posts/show/<?= $post->slug; ?>"><?= $post->title; ?></a></td>
                         <td class="col-mm"><?= $post->name_cate; ?></td>
                         <td class="col-pm"><img src="<?= $post->lien_img; ?>" alt="" width="150px"></td>
                         <td class="col-gm"><?= $post->resume; ?></td>

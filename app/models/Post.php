@@ -24,7 +24,7 @@
          */
         public function getPosts()
         {
-            $this->db->query("SELECT id, title, resume, lien_img, name_cate, name_aut,
+            $this->db->query("SELECT id, slug, title, resume, lien_img, name_cate, name_aut,
                                         DATE_FORMAT(created_at, '%d/%m/%Y') AS date_crea,
                                         DATE_FORMAT(modified_at, '%d/%m/%Y') AS modified_at
                                     FROM articles
@@ -41,7 +41,7 @@
          */
         public function gettroisarticles()
         {
-            $this->db->query('SELECT id, title, resume, lien_img, name_cate, name_aut
+            $this->db->query('SELECT id, slug, title, resume, lien_img, name_cate, name_aut
                                     FROM articles
                                     JOIN authors
                                         ON articles.id_authors = authors.id_aut
@@ -78,7 +78,7 @@
 
         public function getPostByTitle($title_art)
         {
-            $this ->db->query('SELECT id_aut, lien_img, name_aut, text_art 
+            $this ->db->query('SELECT id_aut, slug, lien_img, name_aut, text_art 
                                         FROM articles
                                         JOIN authors
                                             ON articles.id_authors = authors.id_aut   
@@ -89,15 +89,33 @@
             return $row;
         }
 
+        public function getPostBySlug($slug)
+        {
+            $this ->db->query('SELECT id, title, slug, text_art, resume,lien_img, id_aut, id_authors, name_aut, name_cate,
+                                        DATE_FORMAT(created_at, \'%d/%m/%Y\') AS date_crea,
+                                        DATE_FORMAT(modified_at, \'%d/%m/%Y\') AS modified_at
+                                        FROM articles
+                                        JOIN authors
+                                            ON articles.id_authors = authors.id_aut 
+                                        JOIN categories  
+                                            ON articles.name_cate = categories.name_cat
+                                        WHERE slug = :slug');
+
+            $this->db->bind(':slug', $slug);
+            $row = $this->db->single();
+            return $row;
+        }
+
         public function addPost($data)
         {
 //            $this->db->query('INSERT INTO articles(titre1, resume, lien_img, categorie, user_id, article_text)
 //                                    VALUES (:title, :resume, :lien_img, :categorie, :user_id, :body)');
-            $this->db->query('INSERT INTO articles(title, resume, text_art, lien_img, id_authors, name_cate)
-                                    VALUES (:title, :resume, :body, :lien_img, :user_id, :categorie)');
+            $this->db->query('INSERT INTO articles(title, slug, resume, text_art, lien_img, id_authors, name_cate)
+                                    VALUES (:title, :slug, :resume, :body, :lien_img, :user_id, :categorie)');
 
             // bind values
             $this->db->bind(':title', $data['title']);
+            $this->db->bind(':slug', $data['slug']);
             $this->db->bind(':resume', $data['resume']);
             $this->db->bind(':lien_img', $data['lien_img']);
             $this->db->bind(':categorie', $data['categorie']);

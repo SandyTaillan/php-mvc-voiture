@@ -18,7 +18,8 @@
                         <p>
                             <?= html_entity_decode($post->resume); ?>
                         </p>
-                        <a href="<?= URLROOT ?>/pages/single/<?= $post->id; ?>" class="more">Lire la suite ...</a>
+<!--                        <a href="--><?//= URLROOT ?><!--/pages/single/--><?//= $post->id; ?><!--" class="more">Lire la suite ...</a>-->
+                        <a href="<?= URLROOT ?>/pages/single/<?= $post->slug; ?>" class="more">Lire la suite ...</a>
                     </div>
 
                 </div>

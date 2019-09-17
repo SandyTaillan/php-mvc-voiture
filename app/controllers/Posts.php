@@ -32,6 +32,7 @@ class Posts extends Controller{
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS );
             $data = [
                 'title' => trim($_POST['title']),
+                'slug' => trim($_POST['slug']),
                 'body' => trim($_POST['body']),
                 'user_id' => $_SESSION['user_id'],
                 'resume' => trim($_POST['resume']),
@@ -73,7 +74,7 @@ class Posts extends Controller{
             $this->view('posts/add', $data);
         }
     }
-    public function edit($id){
+    public function edit($slug){
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             // Sanitize POST array
             echo "j'ai bien un post";
@@ -119,7 +120,7 @@ class Posts extends Controller{
             }
         } else {
             // Get existing post from model
-            $post = $this->postModel->getPostById($id);
+            $post = $this->postModel->getPostBySlug($slug);
             $posts_cat = $this->postModel->getCategories();
             // Check for owner
 
@@ -141,8 +142,8 @@ class Posts extends Controller{
         }
     }
 
-    public function show($id){
-        $post = $this->postModel->getPostById($id);
+    public function show($slug){
+        $post = $this->postModel->getPostBySlug($slug);
         $user = $this->userModel->getUserById($post->id);
         $data = [
             'post' => $post,

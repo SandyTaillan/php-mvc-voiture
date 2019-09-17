@@ -8,7 +8,7 @@
             <?php if($data['post']->id_aut == $_SESSION['user_id']) : ?>
                 <hr>
 
-                <a href="<?php echo URLROOT; ?>/posts/edit/<?php echo $data['post']->id; ?>" class="btn btn-dark">Edit</a>
+                <a href="<?php echo URLROOT; ?>/posts/edit/<?php echo $data['post']->slug; ?>" class="btn btn-dark">Edit</a>
 
                 <form class="pull-right" action="<?php echo URLROOT; ?>/posts/delete/<?php echo $data['post']->id; ?>" method="post">
                     <input type="submit" value="Delete" class="btn btn-danger">
@@ -17,8 +17,10 @@
             <h1><?= $data['post']->title; ?></h1>
             <img src="<?= $data['post']->lien_img; ?>" width="500px" alt="">
             <p class="postdata postdata_single">
-                Article de <?= $data['post']->name_aut ; ?> créé le <?= $data['post']->created_at; ?>
-                dans la catégorie "<?= $data['post']->name_cate ;?>"
+                Article de <?= $data['post']->name_aut ; ?> créé le <?= $data['post']->date_crea; ?>
+                dans la catégorie "<?= $data['post']->name_cate ;?>"<br>
+                modifié le <?= $data['post']->modified_at; ?>
+
             </p>
             <p class="single_texte">
                 <?= html_entity_decode($data['post']->text_art); ?>

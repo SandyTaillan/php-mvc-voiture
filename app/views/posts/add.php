@@ -12,6 +12,8 @@
                     <input type="text" id="title" name="title" class="is-invalid
                     <?= (!empty($data['title_err'])) ? 'is-invalid' : '';?>" value="<?= $data['title']; ?>">
                     <span class="invalid-feedback"><?= $data['title_err']; ?></span>
+                    <label for="slug">Permalien : <sup>*</sup></label>
+                    <input type="text" id="slug" name="slug" value="">
                     <div class="float-left">
                         <label for="categorie">Catégorie : </label>
 <!--                        <input class="cate_form" type="text" id="categorie" name="categorie">-->
