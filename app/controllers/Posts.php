@@ -84,6 +84,7 @@ class Posts extends Controller{
             $data = [
                 'id'        => $id,
                 'title'     => trim($_POST['title']),
+                'slug'      => trim($_POST['slug']),
                 'body'      => trim($_POST['body']),
                 'resume'    => trim($_POST['resume']),
                 'lien_img'  => trim($_POST['lien_img']),
@@ -129,8 +130,9 @@ class Posts extends Controller{
                 redirect("posts");
             }
             $data = [
-                'id'            => $id,
+                'id'            => $post->id,
                 'user_id'       => $post->id_aut,
+                'slug'          => $slug,
                 'title'         => $post->title,
                 'resume'        => $post->resume,
                 'body'          => $post->text_art,

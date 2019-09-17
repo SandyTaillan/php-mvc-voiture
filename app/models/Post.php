@@ -132,10 +132,11 @@
         }
 
         public function updatePost($data){
-            $this->db->query('UPDATE articles SET title = :title, name_cate = :categorie, resume = :resume,
+            $this->db->query('UPDATE articles SET title = :title, slug = :slug, name_cate = :categorie, resume = :resume,
                     id_authors = :user_id, text_art = :body, lien_img = :lien_img, modified_at = NOW() WHERE id = :id');
             // Bind values
             $this->db->bind(':id', $data['id']);
+            $this->db->bind(':slug', $data['slug']);
             $this->db->bind(':title', $data['title']);
             $this->db->bind(':resume', $data['resume']);
             $this->db->bind(':user_id', $data['user_id']);

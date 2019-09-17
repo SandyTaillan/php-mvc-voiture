@@ -10,6 +10,8 @@
                 <input type="text" id="title" name="title" class="form-control form-control-lg
                         <?= (!empty($data['title_err'])) ? 'is-invalid' : '';?>" value="<?= $data['title']; ?>">
                 <span class="invalid-feedback"><?= $data['title_err']; ?></span>
+                <label for="slug">Permalien : <sup>*</sup></label>
+                <input type="text" id="slug" name="slug" value="<?= $data['slug'] ; ?>">
             </div>
             <div class="float-left">
                 <label for="categorie">Catégorie : </label>
