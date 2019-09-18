@@ -32,7 +32,7 @@
             </div>
                 <label class="clearboth" for="body">Body : <sup>*</sup></label>
                 <textarea id="body" name="body" class="form-control form-control-lg
-                            <?= (!empty($data['body_err'])) ? 'is-invalid' : ''; ?>" rows="40">
+                            <?= (!empty($data['body_err'])) ? 'is-invalid' : ''; ?>" rows="30">
                     <?= $data['body'] ; ?>
                 </textarea>
                 <span class="invalid-feedback"><?= $data['body_err']; ?></span>
