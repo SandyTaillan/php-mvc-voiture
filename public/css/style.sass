@@ -76,8 +76,15 @@ p
 
 .bloc
   float: right
+  -webkit-filter: contrast(100)
+  filter: contrast(100%)
+  -webkit-transition: .3s ease-in-out
+  transition: .3s ease-in-out
+.bloc:hover
+  filter: contrast(130%)
 .bloc1
   background-color: $coulIndexArt1
+
 .bloc2
   background-color: $coulIndexArt2
 .bloc3
@@ -95,6 +102,18 @@ p
     margin-top: 70px
   .resume
     text-align: center
+
+.sepia
+  -webkit-filter: sepia(50%)
+  filter: sepia(50%)
+  -webkit-transition: .3s ease-in-out
+  transition: .3s ease-in-out
+
+
+.sepia:hover
+  -webkit-filter: sepia(0%) contrast(120%)
+  filter: sepia(0%) contrast(120%)
+  transform: scale(0.98)
 
 // ******************
 //  header général

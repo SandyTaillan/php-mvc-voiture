@@ -1,6 +1,5 @@
 <!--app/views/pages/index-->
-<!--todo : finir de créer la page About (écriture l'article) et faire l'appel dans le fichier Pages-->
-<!--todo : mettre du volume sur les 3 blocs sur la page d'accueil avec de l'animation  et un voile de couleur sur les images-->
+
 <!--todo : Changer la date de modification d'un article quand on l'update (voir cours SQL sur TIMESTAMPS-->
 <!--todo : Faire une table pour les images avec le contenu du alt  -->
 <!--todo : Ajouter une zone de recherche -> apprendre comment faire en php-->
@@ -19,6 +18,11 @@
 <!--todo : Rectifier la taille du header sur /pages/articles-->
 <!--todo :  La date ne s'affiche pas comme je le veux dans le post->show, enfin, je ne suis pas encore fixée ^^-->
 <!--todo : Revoir la sécurité du site dans le fichier Posts -> add et edit. en fait, tout ce qui créé du contenu.-->
+<!--todo : ajouter une catégorie fourre-tout genre divers-->
+<!-- todo : revoir entièrement la gestion des images -->
+<!-- todo : mettre un bonjour -> nom de l'utilisateur connecté pour savoir ou j'en suis-->
+<!--todo : problème de mage sur posts/edit/nom-de-l'aritcle -> Résumé de l'article-->
+<!--todo : Créer un slug automatique-->
 
 <?php require_once APPROOT . '/views/inc/head.php'; ?>
     <body>
@@ -55,13 +59,13 @@
                         $i = 0;   // pour mettre une couleur différentes à chaque article
                         foreach ($data['posts'] as $post) :
                             $i++; ?>
-                            <div class="index-bloc-article bloc bloc<?= $i; ?>">
-                                <div class="img_art_une">
+                            <div class="index-bloc-article ">
+                                <div class="img_art_une sepia">
                                     <a href="<?= URLROOT ?>/pages/single/<?= $post->id ?>">
                                         <img src="<?= $post->lien_img ; ?>" width='450px' height='300px' alt="">
                                     </a>
                                 </div>
-                                <div class="index-texte">
+                                <div class="index-texte bloc bloc<?= $i; ?>">
                                     <li><p>Catégorie : <?= $post->name_cate; ?></p></li>
 
                                     <li>
