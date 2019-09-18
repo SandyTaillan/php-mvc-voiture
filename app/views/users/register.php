@@ -4,7 +4,7 @@
     <div id="articles">
         <div class="login">
             <h1>Administration : Création d'un compte</h1>
-            <form action="<?=  URLROOT ?>/users/register" method="post">
+            <form id="classique" action="<?=  URLROOT ?>/users/register" method="post">
 
                 <label for="name">Name : <sup>*</sup></label><br>
                 <input type="text" id="name" name="name" class="form-control form-control-lg is-invalid

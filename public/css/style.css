@@ -17,6 +17,9 @@ h2 {
 p {
   color: #e0e8fe; }
 
+.width {
+  width: 100%; }
+
 #index-header {
   width: 60%;
   display: block;
@@ -151,7 +154,8 @@ p {
 .btn {
   padding: 7px;
   border-radius: 5px;
-  background-color: #9b7400; }
+  color: #e0e8fe;
+  margin-right: 10px; }
 
 .more {
   float: right;
@@ -185,47 +189,44 @@ p {
     text-align: center;
     margin-bottom: 60px; }
 
-form {
+#classique {
   width: 450px;
   background-color: #474643;
   padding: 30px 40px;
   margin: 0 auto;
   border: 1px solid black; }
-  form p {
+  #classique p {
     margin-bottom: 40px; }
-  form label {
+  #classique label {
     display: inline-block;
     margin-bottom: 10px; }
-
-input[type="email"],
-input[type="password"],
-input[type="text"],
-select {
-  width: 100%;
-  display: block;
-  box-sizing: border-box;
-  padding: 0 10px;
-  height: 40px;
-  margin-bottom: 15px;
-  border: 1px solid #cdcdcd;
-  outline: none; }
-
-input[type="submit"] {
-  width: 100%;
-  display: block;
-  box-sizing: border-box;
-  background-color: #9b7400;
-  color: #fff;
-  padding: 10px 0;
-  border: 1px solid #798a56;
-  border-radius: 3px;
-  outline: none;
-  margin: 40px 0; }
-
-input[type="submit"]:hover,
-input[type="submit"]:focus {
-  border: 1px solid #535e3b;
-  background-color: #798a56; }
+  #classique input[type="email"],
+  #classique input[type="password"],
+  #classique input[type="text"],
+  #classique select {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    padding: 0 10px;
+    height: 40px;
+    margin-bottom: 15px;
+    border: 1px solid #cdcdcd;
+    outline: none; }
+  #classique input[type="submit"] {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    background-color: #9b7400;
+    color: #fff;
+    padding: 10px 0;
+    border: 1px solid #798a56;
+    border-radius: 3px;
+    outline: none;
+    margin: 40px 0; }
+  #classique input[type="submit"]:hover,
+  #classique input[type="submit"]:focus {
+    border: 1px solid #535e3b;
+    background-color: #798a56; }
 
 #administration {
   display: flex;
@@ -244,7 +245,8 @@ input[type="submit"]:focus {
     width: 150px;
     margin-bottom: 20px;
     padding: 20px;
-    background-color: #9b7400; }
+    background-color: #9b7400;
+    border-radius: 5px; }
 
 #admin_articles {
   min-height: 720px;
@@ -285,14 +287,39 @@ input[type="submit"]:focus {
   min-width: 200px;
   padding: 0 15px; }
 
+.single-admin {
+  min-height: 775px;
+  max-width: 1200px;
+  background-color: #565552;
+  padding: 40px; }
+  .single-admin img {
+    display: block;
+    width: 500px;
+    margin: 50px auto;
+    border: 3px solid #9b7400; }
+
+.single-admin-show {
+  display: flex; }
+
+#administration-single {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  min-height: 850px; }
+
 .admin_add {
-  min-width: 800px; }
+  min-width: 850px; }
   .admin_add h2 {
     text-align: center; }
   .admin_add form {
-    width: 100%; }
-    .admin_add form .cate_form {
-      width: 100%; }
+    width: 100%;
+    padding: 20px;
+    background-color: #565552; }
+  .admin_add input[type="submit"] {
+    display: block;
+    margin: 20px auto;
+    padding-left: 20px;
+    padding-right: 20px; }
 
 .clearboth {
   clear: both;
@@ -306,11 +333,18 @@ input[type="submit"]:focus {
   float: right;
   width: 45%; }
 
+#menu-show {
+  width: 400px;
+  margin: 0 auto; }
+
 #footer {
   height: 75px;
   padding: 30px;
   background-color: #6a676a;
   text-align: center; }
+
+.normal {
+  background-color: #9b7400; }
 
 .invalid-feedback {
   color: red; }
@@ -326,5 +360,9 @@ input[type="submit"]:focus {
 
 #msg-flash {
   color: #334263; }
+
+.danger {
+  background-color: #851d1e;
+  margin-left: 30px; }
 
 /*# sourceMappingURL=style.css.map */

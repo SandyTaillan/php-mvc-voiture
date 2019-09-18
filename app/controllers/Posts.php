@@ -145,7 +145,7 @@ class Posts extends Controller{
 
     public function show($slug){
         $post = $this->postModel->getPostBySlug($slug);
-        $user = $this->userModel->getUserById($post->id);
+        $user = $this->userModel->getUserById($post->id_authors);
         $data = [
             'post' => $post,
             'user' => $user

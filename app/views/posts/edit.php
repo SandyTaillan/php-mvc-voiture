@@ -1,4 +1,4 @@
-<?php require APPROOT . '/views/inc/header.php'; ?>
+<?php require APPROOT . '/views/inc/admin-head.php'; ?>
 <div id="administration">
     <div id="admin_articles" class="admin_add">
         <h1>Administration : Modifier un article</h1>

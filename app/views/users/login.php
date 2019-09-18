@@ -6,7 +6,7 @@
             <?php flash('register_success') ?>
             <h1>Login</h1>
             <p>Entrez vos identifiants s'il vous plait .....</p>
-            <form action="<?=  URLROOT ?>/users/login" method="post">
+            <form id="classique" action="<?=  URLROOT ?>/users/login" method="post">
                 <div class="form-group">
                     <label for="email">Email : <sup>*</sup></label>
                     <input type="email" id="email" name="email"

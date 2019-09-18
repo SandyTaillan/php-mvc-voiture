@@ -10,6 +10,7 @@ $coultexte: #e0e8fe
 $coulbordure: #9b7400
 $coultexteh1: #b2b1bc
 $coultexteart: #ceac55
+$couldanger: #851d1e
 
 // Fonction
 @mixin marg0
@@ -29,6 +30,8 @@ h2
   color: $coultexte
 p
   color: $coultexte
+.width
+  width: 100%
 // ******************
 //  Pages d'accueil
 // ******************
@@ -170,7 +173,10 @@ p
 .btn
   padding: 7px
   border-radius: 5px
-  background-color: #9b7400
+  color: $coultexte
+  margin-right: 10px
+
+
 .more
   float: right
   color: $coultexteart
@@ -209,7 +215,9 @@ p
     p
       text-align: center
       margin-bottom: 60px
-form
+
+
+#classique
   width: 450px
   background-color: $couleurfond
   padding: 30px 40px
@@ -221,34 +229,34 @@ form
     display: inline-block
     margin-bottom: 10px
 
-input[type="email"],
-input[type="password"],
-input[type="text"],
-select
-  width: 100%
-  display: block
-  box-sizing: border-box
-  padding: 0 10px
-  height: 40px
-  margin-bottom: 15px
-  border: 1px solid #cdcdcd
-  outline: none
+  input[type="email"],
+  input[type="password"],
+  input[type="text"],
+  select
+    width: 100%
+    display: block
+    box-sizing: border-box
+    padding: 0 10px
+    height: 40px
+    margin-bottom: 15px
+    border: 1px solid #cdcdcd
+    outline: none
 
-input[type="submit"]
-  width: 100%
-  display: block
-  box-sizing: border-box
-  background-color: $coulbordure
-  color: #fff
-  padding: 10px 0
-  border: 1px solid #798a56
-  border-radius: 3px
-  outline: none
-  margin: 40px 0
-input[type="submit"]:hover,
-input[type="submit"]:focus
-  border: 1px solid #535e3b
-  background-color: #798a56
+  input[type="submit"]
+    width: 100%
+    display: block
+    box-sizing: border-box
+    background-color: $coulbordure
+    color: #fff
+    padding: 10px 0
+    border: 1px solid #798a56
+    border-radius: 3px
+    outline: none
+    margin: 40px 0
+  input[type="submit"]:hover,
+  input[type="submit"]:focus
+    border: 1px solid #535e3b
+    background-color: #798a56
 
 // **************************************
 //             Administration
@@ -269,12 +277,14 @@ input[type="submit"]:focus
   li
     list-style: none
     font-weight: bold
+
   a
     display: block
     width: 150px
     margin-bottom: 20px
     padding: 20px
     background-color: $coulbordure
+    border-radius: 5px
 #admin_articles
   min-height: 720px
   margin: 30px auto
@@ -311,16 +321,42 @@ input[type="submit"]:focus
   padding: 0 15px
 
 // ********************
+//     single - admin.php
+// ********************
+.single-admin
+  min-height: 775px
+  max-width: 1200px
+  background-color: $couleurfond2
+  padding: 40px
+  img
+    display: block
+    width: 500px
+    margin: 50px auto
+    border: 3px solid $coulbordure
+.single-admin-show
+  display: flex
+
+// ********************
 //     add.php
 // ********************
+#administration-single
+  display: flex
+  width: 80%
+  margin: 0 auto
+  min-height: 850px
 .admin_add
-  min-width: 800px
+  min-width: 850px
   h2
     text-align: center
   form
     width: 100%
-    .cate_form
-      width: 100%
+    padding: 20px
+    background-color: $couleurfond2
+  input[type="submit"]
+    display: block
+    margin: 20px auto
+    padding-left : 20px
+    padding-right: 20px
 
 .clearboth
   clear: both
@@ -333,6 +369,14 @@ input[type="submit"]:focus
   width: 45%
 
 // ********************
+//     show/article.php
+// ********************
+
+#menu-show
+  width: 400px
+  margin : 0 auto
+
+// ********************
 //  footer
 // ********************
 #footer
@@ -342,7 +386,8 @@ input[type="submit"]:focus
   text-align: center
 
 
-
+.normal
+  background-color: $coulbordure
 .invalid-feedback
   color: red
 .is-invalid
@@ -353,3 +398,6 @@ input[type="submit"]:focus
   color: #798a56
 #msg-flash
   color: #334263
+.danger
+  background-color: $couldanger
+  margin-left: 30px

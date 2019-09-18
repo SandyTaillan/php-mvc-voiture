@@ -1,6 +1,13 @@
 <!--app/views/pages/index-->
 
-<!--todo : Changer la date de modification d'un article quand on l'update (voir cours SQL sur TIMESTAMPS-->
+<!--todo: modifier l'affichage dans show/nomarticle-->
+<!--todo : Diminuer la taille de l'image à la une pour le single d'article-->
+<!--todo : Mettre l'avatar de l'auteur dans le postmetadata du single d'article-->
+<!--todo :  La date ne s'affiche pas comme je le veux dans le post->show, enfin, je ne suis pas encore fixée ^^-->
+<!--todo : Rectifier la taille du header sur /pages/articles-->
+<!--todo : ajouter une catégorie fourre-tout genre divers-->
+<!--todo : Améliorer les boutons de l'administration-->
+
 <!--todo : Faire une table pour les images avec le contenu du alt  -->
 <!--todo : Ajouter une zone de recherche -> apprendre comment faire en php-->
 <!--todo : Rajouter la possibilité de faire une sélection par catégorie et par auteur pour tout public-->
@@ -12,13 +19,8 @@
 <!--todo : faire en que dans la page article, il y ait une image à gauche puis à droite etc...-->
 <!--todo : tout le site doit être web responsive-->
 <!--todo : faire la mise en place des commentaires-->
-<!--todo : Diminuer la taille de l'image à la une pour le single d'article-->
-<!--todo : Mettre l'avatar de l'auteur dans le postmetadata du single d'article-->
 <!--todo : Faire une page 404-->
-<!--todo : Rectifier la taille du header sur /pages/articles-->
-<!--todo :  La date ne s'affiche pas comme je le veux dans le post->show, enfin, je ne suis pas encore fixée ^^-->
 <!--todo : Revoir la sécurité du site dans le fichier Posts -> add et edit. en fait, tout ce qui créé du contenu.-->
-<!--todo : ajouter une catégorie fourre-tout genre divers-->
 <!-- todo : revoir entièrement la gestion des images -->
 <!-- todo : mettre un bonjour -> nom de l'utilisateur connecté pour savoir ou j'en suis-->
 <!--todo : problème de mage sur posts/edit/nom-de-l'aritcle -> Résumé de l'article-->

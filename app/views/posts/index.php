@@ -7,7 +7,7 @@
         <div id="admin_articles">
             <h1>Administration</h1>
                 <div class="col-md-6">
-                    <a href="<?= URLROOT ?>/posts/add" class="btn btn-primary pull-right">
+                    <a href="<?= URLROOT ?>/posts/add" class="btn normal">
                         <i class="fa fa-pencil">Ajouter un  article</i>
                     </a>
                 </div>
