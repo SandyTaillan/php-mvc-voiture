@@ -168,12 +168,12 @@ p {
   margin: 20px 60px; }
   .single img {
     display: block;
-    width: 500px;
-    margin: 50px auto;
+    width: 450px;
+    margin: 40px auto;
     border: 3px solid #9b7400; }
 
 .single_texte {
-  display: inline-block;
+  display: block;
   margin-top: 50px; }
 
 .postdata_single {
@@ -294,7 +294,7 @@ p {
   padding: 40px; }
   .single-admin img {
     display: block;
-    width: 500px;
+    width: 450px;
     margin: 50px auto;
     border: 3px solid #9b7400; }
 

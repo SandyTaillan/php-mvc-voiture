@@ -10,12 +10,9 @@ flash('post_message'); ?>
             <a href="<?= URLROOT ?>/users/register" class="btn btn-primary pull-right">
                 <i class="fa fa-pencil">Ajouter un auteur</i>
             </a>
-            <a href="<?= URLROOT ?>/users/edit_users" class="btn btn-primary pull-right">
-                <i class="fa fa-pencil">Modifier un auteur</i>
+
             </a>
-            <a href="<?= URLROOT ?>/users/register" class="btn btn-primary pull-right">
-                <i class="fa fa-pencil">Supprimer un auteur</i>
-            </a>
+
         </div>
         <table>
             <thead>

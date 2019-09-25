@@ -1,13 +1,11 @@
 <!--app/views/pages/index-->
 
-<!--todo: modifier l'affichage dans show/nomarticle-->
 <!--todo : Diminuer la taille de l'image à la une pour le single d'article-->
-<!--todo : Mettre l'avatar de l'auteur dans le postmetadata du single d'article-->
-<!--todo :  La date ne s'affiche pas comme je le veux dans le post->show, enfin, je ne suis pas encore fixée ^^-->
 <!--todo : Rectifier la taille du header sur /pages/articles-->
 <!--todo : ajouter une catégorie fourre-tout genre divers-->
-<!--todo : Améliorer les boutons de l'administration-->
 
+<!--todo : Faire une gestion des auteurs-->
+<!--todo : Mettre l'avatar de l'auteur dans le postmetadata du single d'article-->
 <!--todo : Faire une table pour les images avec le contenu du alt  -->
 <!--todo : Ajouter une zone de recherche -> apprendre comment faire en php-->
 <!--todo : Rajouter la possibilité de faire une sélection par catégorie et par auteur pour tout public-->
@@ -25,6 +23,9 @@
 <!-- todo : mettre un bonjour -> nom de l'utilisateur connecté pour savoir ou j'en suis-->
 <!--todo : problème de mage sur posts/edit/nom-de-l'aritcle -> Résumé de l'article-->
 <!--todo : Créer un slug automatique-->
+<!--todo : voir comment est géré la mise en valeur des images d'article-->
+<!--todo : du code dans Users -> register et  Users -> edit est en double (vérification) voir pour faire des fonctions-->
+
 
 <?php require_once APPROOT . '/views/inc/head.php'; ?>
     <body>

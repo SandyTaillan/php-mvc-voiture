@@ -20,16 +20,16 @@
             <div class="single-admin-show">
                 <div class="single-admin-art">
                     <h1><?= $data['post']->title; ?></h1>
-                    <img src="<?= $data['post']->lien_img; ?>" width="500px" alt="">
+                    <img src="<?= $data['post']->lien_img; ?>" width="450px" alt="">
                     <p class="postdata postdata_single">
                         Article de <?= $data['post']->name_aut ; ?> créé le <?= $data['post']->date_crea; ?>
                         dans la catégorie "<?= $data['post']->name_cate ;?>"<br>
                         modifié le <?= $data['post']->modified_at; ?>
 
                     </p>
-                    <p class="single_texte">
+                    <div class="single_texte">
                         <?= html_entity_decode($data['post']->text_art); ?>
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>

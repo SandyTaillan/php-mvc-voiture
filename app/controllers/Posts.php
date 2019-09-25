@@ -121,7 +121,7 @@ class Posts extends Controller{
         } else {
             // Get existing post from model
             $post = $this->postModel->getPostBySlug($slug);
-            $posts_cat = $this->postModel->getCategories();
+            $posts_cat = $this->postModel->getPostBySlug($slug);
             // Check for owner
 
 

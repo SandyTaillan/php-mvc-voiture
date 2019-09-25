@@ -73,13 +73,23 @@
                                     ORDER BY id_aut DESC;");
             return $this->db->resultSet();
         }
-        public function editUsers()
+        public function editUsers($data)
         {
-            $this->db->query("UPDATE authors SET id_aut = :id, name_aut = :name_aut
+            $this->db->query("UPDATE authors SET id_aut = :id, name_aut = :name_aut, pseudo_aut = :pseudo_aut,
+                                        email = :email, password = :password, avatar_aut = :avatar
                                     WHERE id_aut = :id");
             // Bind values
             $this->db->bind(':id', $data['id']);
-            $row = $this->db->single();
-            return $row;
+            $this->db->bind(':name_aut', $data['name_aut']);
+            $this->db->bind(':pseudo_aut', $data['pseudo_aut']);
+            $this->db->bind(':email', $data['email']);
+            $this->db->bind(':avatar', $data['avatar']);
+            $this->db->bind(':password', $data['password']);
+            // Execute
+            if($this->db->execute()){
+                return true;
+            } else {
+                return false;
+            }
         }
     }

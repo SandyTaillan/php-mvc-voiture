@@ -50,7 +50,7 @@ class Users extends Controller
             } else {
                 // Check email
                 if ($this->userModel->findUserByEmail($data['email'])) {
-                    $data['email_err'] = 'Email is already taken';
+                    $data['email_err'] = 'Cette adresse email est déjà prise.';
                 }
             }
 
@@ -228,6 +228,7 @@ class Users extends Controller
             return false;
         }
     }
+
     public function index()
     {
         // Get posts
@@ -238,16 +239,78 @@ class Users extends Controller
         $this->view('users/index', $data);
     }
 
-    public function edit($id){
-        $post = $this->userModel->getUserById($id);
-        $data = [
-                'id'        => $id,
-                'name'      => $post->name_aut,
-                'pseudo'    => $post->pseudo_aut,
-                'email'     => $post->email,
-                'password'  => $post->password,
-                'avatar'    => $post->avatar_aut
-        ];
-        $this->view('users/edit', $data);
+    /**
+     * Cette fonction permet de modifier un nouvel auteur
+     *
+     *
+     *
+     * @param $id
+     */
+    public function edit($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $data = [
+                'id' => $id,
+                'name_aut' => trim($_POST['name']),
+                'pseudo_aut' => trim($_POST['pseudo']),
+                'email' => trim($_POST['email']),
+                'avatar' => trim($_POST['avatar']),
+                'password' => trim($_POST['password']),
+                'confirm_password' => trim($_POST['confirm_password'])
+            ];
+//             Validate Email
+            if (empty($data['email'])) {
+                $data['email_err'] = "S'il vous plait, entrez un email";
+            }
+            // Validate Name
+            if (empty($data['name_aut'])) {
+                $data['name_err'] = "S'il vous plait, entrez un nom";
+            }
+            // Validate Password
+            if (empty($data['password'])) {
+                $data['password_err'] = "S'il vous plait, entrez un mot de passe";
+            } elseif (strlen($data['password']) < 6) {
+                $data['password_err'] = 'Le mot de passe doit avoir au moins 6 caractères';
+            }
+            // Validate Confirm Password
+            if (empty($data['confirm_password'])) {
+                $data['confirm_password_err'] = "S'il vous plait, entrez un mot de passe";
+            } else {
+                if ($data['password'] != $data['confirm_password']) {
+                    $data['confirm_password_err'] = 'Le mot de passe ne fonctionne pas';
+                }
+            }
+            // Make sure errors are empty
+            if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
+                // Validated
+                // Hash Password
+                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                if ($this->userModel->editUsers($data)) {
+                    flash('Modification réussie', 'Vous pouvez vous connecter');
+                    redirect('users/');
+                } else {
+                    die('Something went wrong');
+                }
+            } else {
+                // Load view with errors
+                $this->view('users/edit', $data);
+            }
+        } else {
+            $post = $this->userModel->getUserById($id);
+            if ($post->id_aut != $_SESSION['user_id']) {
+                echo"Vous n'avez pas le droit de modifier cet auteur.";
+                redirect("users");
+            }
+            $data = [
+                'id' => $post->id_aut,
+                'name' => $post->name_aut,
+                'pseudo' => $post->pseudo_aut,
+                'email' => $post->email,
+                'password' => '',
+                'avatar' => $post->avatar_aut
+            ];
+            $this->view('users/edit', $data);
+        }
     }
 }
