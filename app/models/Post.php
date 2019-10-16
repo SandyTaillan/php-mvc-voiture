@@ -91,14 +91,18 @@
 
         public function getPostBySlug($slug)
         {
-            $this ->db->query('SELECT id, title, slug, text_art, resume,lien_img, id_aut, id_authors, name_aut, name_cate,
+            $this ->db->query('SELECT id, title, slug, text_art, resume,lien_img, id_aut, id_authors, name_aut,
+                                        name_cate,
                                         DATE_FORMAT(created_at, \'%d/%m/%Y\') AS date_crea,
-                                        DATE_FORMAT(modified_at, \'%d/%m/%Y\') AS modified_at
+                                        DATE_FORMAT(modified_at, \'%d/%m/%Y\') AS modified_at,
+                                        com_auteur, com_contenu, com_created
                                         FROM articles
                                         JOIN authors
                                             ON articles.id_authors = authors.id_aut 
                                         JOIN categories  
                                             ON articles.name_cate = categories.name_cat
+                                        LEFT JOIN commentaires
+                                            ON articles.id = commentaires.FK_articles
                                         WHERE slug = :slug');
 
             $this->db->bind(':slug', $slug);
@@ -106,13 +110,20 @@
             return $row;
         }
 
+
+        /**
+         * Requête vers la DBB pour la création d'article
+         * $data contiendra tous ce dont on a besoin pour créer un article
+         *
+         * @param $data
+         * @return bool
+         */
         public function addPost($data)
         {
 //            $this->db->query('INSERT INTO articles(titre1, resume, lien_img, categorie, user_id, article_text)
 //                                    VALUES (:title, :resume, :lien_img, :categorie, :user_id, :body)');
             $this->db->query('INSERT INTO articles(title, slug, resume, text_art, lien_img, id_authors, name_cate)
                                     VALUES (:title, :slug, :resume, :body, :lien_img, :user_id, :categorie)');
-
             // bind values
             $this->db->bind(':title', $data['title']);
             $this->db->bind(':slug', $data['slug']);
@@ -156,6 +167,27 @@
         {
             $this->db->query("SELECT name_cat FROM categories");
             return $this->db->resultSet();
+        }
+
+        public function addComment($comment)
+        {
+            $this->db->query('INSERT INTO commentaires(com_auteur, com_email, com_contenu, ip_adresse, 
+                         comment_approuv, FK_articles)
+                         VALUES (:com_auteur, :com_email, :com_contenu, :ip_adresse, :com_approuv, :FK_articles)');
+            //bind values
+            $this->db->bind(':com_auteur', $comment['com_auteur']);
+            $this->db->bind(':com_email', $comment['com_email']);
+            $this->db->bind(':com_contenu', $comment['com_contenu']);
+            $this->db->bind(':ip_adresse', $comment['ip_adresse']);
+            $this->db->bind(':com_approuv', $comment['com_approuv']);
+            $this->db->bind(':FK_articles', $comment['id_article']);
+
+            // Execute
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
 

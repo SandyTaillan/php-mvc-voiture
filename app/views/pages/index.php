@@ -27,6 +27,23 @@
 <!--todo : du code dans Users -> register et  Users -> edit est en double (vérification) voir pour faire des fonctions-->
 
 
+<!--.professor-card__image {-->
+<!--display: block;-->
+<!--transition: opacity .3s ease-out, -webkit-transform .3s ease-out;-->
+<!--transition: opacity .3s ease-out, transform .3s ease-out;-->
+<!--transition: opacity .3s ease-out, transform .3s ease-out, -webkit-transform .3s ease-out;-->
+<!--}-->
+<!---->
+<!--.professor-card:hover .professor-card__image {-->
+<!--opacity: .80;-->
+<!---webkit-transform: scale(1.1) rotate(4deg);-->
+<!--transform: scale(1.1) rotate(4deg);-->
+<!--}-->
+
+
+
+
+
 <?php require_once APPROOT . '/views/inc/head.php'; ?>
     <body>
         <main class="index-container">

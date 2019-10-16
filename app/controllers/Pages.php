@@ -62,14 +62,55 @@ class Pages extends Controller
 
     /**
      * Création de la page single pour 1 article
+     * Récupération du contenu de la BDD pour 1 article et ses commentaires
+     *
      *
      */
-    public function single($slug){
-//        $post = $this->postModel->getPostById($id);
+    public function single($slug)
+    {
+        $ip = get_client_ip_server();
+
         $post = $this->postModel->getPostBySlug($slug);
+        $usercomment = $this->postModel->
+
         $data = [
-                'post' => $post
+            'slug' => $slug,
+            'post' => $post
         ];
+
+        #formulaire pour les commentaires de l'article
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $comment= [
+                'com_auteur'    => trim($_POST['com_name']),
+                'com_email'     => trim($_POST['com_email']),
+                'com_contenu'   => trim($_POST['com_comment']),
+                'ip_adresse'    => $ip,
+                'com_approuv'   => "0",
+                'id_article'    => $data['post']->id
+            ];
+
+            // Validate Name
+            if (empty($comment['com_auteur'])) {
+                $data['name_err'] = "S'il vous plait, entrez un nom";
+            }
+            // Validate Email
+            if (empty($comment['com_email'])) {
+                $data['email_err'] = "S'il vous plait, entrez un email";
+            }
+            if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err'])
+                && empty($data['confirm_password_err'])) {
+                if ($this->postModel->addcomment($comment)) {
+                    flash('Commentaire bien enregistré', 'Le commentaire est en attente de modération');
+//                    redirect('pages/single/'.$slug, $data);
+                } else {
+                    die('Something went wrong');
+                }
+            }
+        }
         $this->view('pages/single', $data);
+
     }
 }
+
