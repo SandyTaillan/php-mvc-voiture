@@ -94,20 +94,29 @@
             $this ->db->query('SELECT id, title, slug, text_art, resume,lien_img, id_aut, id_authors, name_aut,
                                         name_cate,
                                         DATE_FORMAT(created_at, \'%d/%m/%Y\') AS date_crea,
-                                        DATE_FORMAT(modified_at, \'%d/%m/%Y\') AS modified_at,
-                                        com_auteur, com_contenu, com_created
+                                        DATE_FORMAT(modified_at, \'%d/%m/%Y\') AS modified_at
                                         FROM articles
                                         JOIN authors
                                             ON articles.id_authors = authors.id_aut 
                                         JOIN categories  
                                             ON articles.name_cate = categories.name_cat
-                                        LEFT JOIN commentaires
-                                            ON articles.id = commentaires.FK_articles
-                                        WHERE slug = :slug');
+                                        WHERE slug = :slug ');
 
             $this->db->bind(':slug', $slug);
             $row = $this->db->single();
             return $row;
+        }
+
+        public function getCommentById($id)
+        {
+            $this->db->query('SELECT com_auteur, com_contenu, com_created, comment_approuv
+                                    FROM commentaires
+                                    JOIN articles
+                                        ON FK_articles = articles.id
+                                    WHERE FK_articles = :id');
+
+            $this->db->bind(':id', $id);
+            return $this->db->resultSet();
         }
 
 

@@ -4,7 +4,6 @@
     ?>
     <div id="articles">
         <div class="single">
-            <?= var_dump($data); ?>
             <h1><?= $data['post']->title; ?></h1>
             <img src="<?= $data['post']->lien_img; ?>" width="500px" alt="">
             <p class="postdata postdata_single">
@@ -31,10 +30,15 @@
                 </p>
                 <input type="submit" value="Validez" class="btn normal">
             </form>
-            <?= var_dump($data); ?>
             <h3>Les commentaires sur l'article</h3>
-            <p>Commentaire de <?= $data['post']->com_auteur; ?> du <?= $data['post']->com_created; ?> :</p>
-            <p><?= $data['post']->com_contenu; ?></p>
+            <?php foreach ($data['usercomment'] as $comment): ?>
+                <p>Commentaire de <?= $comment->com_auteur; ?> du <?= $comment->com_created; ?> :</p>
+                <?php if ($comment->comment_approuv) { ?>
+                    <p><?= $comment->com_contenu; ?></p>
+                <?php } else { ?>
+                <p>Commentaire en attente de validation.</p>
+                <?php } ?>
+            <?php endforeach; ?>
         </div>
     </div>
     <?php require_once APPROOT . '/views/inc/footer.php'; ?>

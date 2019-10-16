@@ -69,14 +69,16 @@ class Pages extends Controller
     public function single($slug)
     {
         $ip = get_client_ip_server();
-
         $post = $this->postModel->getPostBySlug($slug);
-        $usercomment = $this->postModel->
-
+        $id1 = ['monid' => $post];
+        $id = $id1['monid']->id;
+        $usercomment = $this->postModel->getCommentById($id);
         $data = [
-            'slug' => $slug,
-            'post' => $post
+            'slug'          => $slug,
+            'post'          => $post,
+            'usercomment'   => $usercomment
         ];
+
 
         #formulaire pour les commentaires de l'article
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -88,7 +90,7 @@ class Pages extends Controller
                 'com_contenu'   => trim($_POST['com_comment']),
                 'ip_adresse'    => $ip,
                 'com_approuv'   => "0",
-                'id_article'    => $data['post']->id
+                'id_article'    => $data['post']->id # todo : à modifier par $id
             ];
 
             // Validate Name
@@ -103,7 +105,6 @@ class Pages extends Controller
                 && empty($data['confirm_password_err'])) {
                 if ($this->postModel->addcomment($comment)) {
                     flash('Commentaire bien enregistré', 'Le commentaire est en attente de modération');
-//                    redirect('pages/single/'.$slug, $data);
                 } else {
                     die('Something went wrong');
                 }
